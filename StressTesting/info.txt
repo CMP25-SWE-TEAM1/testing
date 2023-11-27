@@ -1,0 +1,45 @@
+execution: local
+     script: test.js
+     output: -
+
+  scenarios: (100.00%) 1 scenario, 1 max VUs, 40s max duration (incl. graceful stop):
+           * default: 1 looping VUs for 10s (gracefulStop: 30s)
+
+     data_received..................: 2.5 MB 234 kB/s
+     data_sent......................: 5.3 kB 492 B/s
+     http_req_blocked...............: avg=55.42ms  min=0s       med=0s       max=277.13ms p(90)=166.27ms p(95)=221.7ms
+     http_req_connecting............: avg=17ms     min=0s       med=0s       max=85ms     p(90)=51ms     p(95)=68ms
+     http_req_duration..............: avg=1.07s    min=884.94ms med=983.04ms max=1.31s    p(90)=1.31s    p(95)=1.31s
+       { expected_response:true }...: avg=1.07s    min=884.94ms med=983.04ms max=1.31s    p(90)=1.31s    p(95)=1.31s
+     http_req_failed................: 0.00%  ✓ 0        ✗ 5
+     http_req_receiving.............: avg=882.14ms min=632.25ms med=794.8ms  max=1.18s    p(90)=1.12s    p(95)=1.15s
+     http_req_sending...............: avg=91.54µs  min=0s       med=0s       max=457.7µs  p(90)=274.62µs p(95)=366.15µ
+     http_req_tls_handshaking.......: avg=21.11ms  min=0s       med=0s       max=105.55ms p(90)=63.33ms  p(95)=84.44ms
+     http_req_waiting...............: avg=194.09ms min=127.57ms med=187.78ms max=267.4ms  p(90)=261.51ms p(95)=264.45m
+     http_reqs......................: 5      0.466592/s
+     iteration_duration.............: avg=2.14s    min=1.88s    med=1.99s    max=2.6s     p(90)=2.49s    p(95)=2.55s
+     iterations.....................: 5      0.466592/s
+     vus............................: 1      min=1      max=1
+
+running (10.7s), 0/1 VUs, 5 complete and 0 interrupted iterations
+default ✓ [======================================] 1 VUs  10s
+
+
+
+//////////////////////////////////////////////////
+
+By number of iterations.
+
+shared-iterations shares iterations between VUs.
+per-vu-iterations has each VU run the configured iterations.
+By number of VUs.
+
+constant-VUs sends VUs at a constant number.
+ramping-vus ramps the number of VUs according to your configured stages.
+By iteration rate.
+
+constant-arrival-rate starts iterations at a constant rate.
+ramping-arrival-rate ramps the iteration rate according to your configured stages.
+
+////////////////////////////////////////////////////
+

@@ -1,0 +1,9 @@
+{
+    "validEmail": "Ibraheimtarek1972@gmail.com",
+    "validUsername": "Hima11",
+    "validUserAge": "November 14, 2002",
+    "invalidUserAge": "November 20, 2023",
+    "invalidEmail": "ibraheim tarek@gmail.com",
+    "validPassword": "anything",
+    "invalidPassword": "11111111"
+}

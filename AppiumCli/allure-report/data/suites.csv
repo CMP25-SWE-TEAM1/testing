@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Nov 14 05:52:31 EET 2023","Tue Nov 14 05:52:40 EET 2023","9313","","My Sign up with new account","","","","Sign up with invalid email",""
+"passed","Tue Nov 14 05:52:31 EET 2023","Tue Nov 14 05:52:36 EET 2023","5421","","My Sign up with new account","","","","""before each"" hook for My Sign up with new account",""
+"failed","Tue Nov 14 05:51:59 EET 2023","Tue Nov 14 05:52:08 EET 2023","9705","","My Sign up with new account","","","","Sign up with valid credentials",""
+"passed","Tue Nov 14 05:52:40 EET 2023","Tue Nov 14 05:52:47 EET 2023","7015","","My Sign up with new account","","","","""after each"" hook for My Sign up with new account",""
