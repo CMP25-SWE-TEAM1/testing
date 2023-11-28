@@ -64,7 +64,7 @@ describe("My Login application", () => {
     await driver.pause(3000);
   });
 
-  it.only("reset password with valid email as input", async () => {
+  it("reset password with valid email as input", async () => {
     await (await LoginPage.userNameField).click();
     await (await LoginPage.userNameField).clearValue();
     await (await LoginPage.userNameField).addValue(User.validEmail);

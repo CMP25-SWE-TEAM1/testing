@@ -1,9 +1,10 @@
 {
-    "validEmail": "Ibraheimtarek1972@gmail.com",
+    "validEmail": "Himaaa@gmail.com",
     "validUsername": "Hima11",
-    "validUserAge": "November 14, 2002",
+    "validUserAge": "November 28, 2003",
     "invalidUserAge": "November 20, 2023",
     "invalidEmail": "ibraheim tarek@gmail.com",
     "validPassword": "anything",
-    "invalidPassword": "11111111"
+    "invalidPassword": "11111111",
+    "adminValidationCode": "1111111111"
 }

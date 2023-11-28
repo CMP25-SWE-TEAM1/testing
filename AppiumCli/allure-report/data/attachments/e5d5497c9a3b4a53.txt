@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//android.widget.SeekBar[@content-desc=\"2023\"]"
+}

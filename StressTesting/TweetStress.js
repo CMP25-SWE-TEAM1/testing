@@ -90,6 +90,9 @@ export default function () {
   });
 
   group("Delete Tweet", function () {});
+  group("Get Tweet Replies", function () {});
+  group("Get Tweet Retweeters", function () {});
+  group("Tweet Search With Word.", function () {});
 }
 
 export function handleSummary(data) {

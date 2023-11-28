@@ -13,11 +13,22 @@ class RegisterPage {
   get signUpButton() {
     return $(`//android.widget.Button[@content-desc="Sign up"]`);
   }
-  getFormWithIndex(index) {
+  get seekBarOfBirthDate() {
+    return $('//android.widget.SeekBar[@content-desc="2023"]');
+  }
+  get cannotSignupRightNowView() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[@content-desc="Can't sign up right now"]`
+    );
+  }
+  async getFormWithIndex(index) {
     return $$(`android.widget.EditText`)[index];
   }
-  getViewWithIndex(index) {
+  async getViewWithIndex(index) {
     return $$(`android.view.View`)[index];
+  }
+  async getViewWithHint(string) {
+    return $(`//android.view.View[@hint="${string}"]`);
   }
 }
 
