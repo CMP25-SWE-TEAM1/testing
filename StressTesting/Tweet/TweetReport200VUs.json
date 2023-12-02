@@ -1,0 +1,486 @@
+{
+    "options": {
+        "summaryTrendStats": [
+            "avg",
+            "min",
+            "med",
+            "max",
+            "p(90)",
+            "p(95)"
+        ],
+        "summaryTimeUnit": "",
+        "noColor": false
+    },
+    "state": {
+        "isStdOutTTY": true,
+        "isStdErrTTY": true,
+        "testRunDurationMs": 360029.6001
+    },
+    "metrics": {
+        "iterations": {
+            "type": "counter",
+            "contains": "default",
+            "values": {
+                "rate": 0.33330592808666126,
+                "count": 120
+            }
+        },
+        "http_req_waiting": {
+            "contains": "time",
+            "values": {
+                "p(95)": 34578.657119999996,
+                "avg": 17728.455135304048,
+                "min": 164.675,
+                "med": 19236.6343,
+                "max": 40166.6014,
+                "p(90)": 31851.53119
+            },
+            "type": "trend"
+        },
+        "http_req_duration{expected_response:true}": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "p(90)": 27093.770900000003,
+                "p(95)": 29005.145679999998,
+                "avg": 18236.49182819333,
+                "min": 711.105,
+                "med": 19723.6197,
+                "max": 34053.1365
+            }
+        },
+        "dropped_iterations": {
+            "type": "counter",
+            "contains": "default",
+            "values": {
+                "count": 90,
+                "rate": 0.24997944606499595
+            }
+        },
+        "data_received": {
+            "contains": "data",
+            "values": {
+                "count": 1203610,
+                "rate": 3343.0862342032196
+            },
+            "type": "counter"
+        },
+        "http_req_duration": {
+            "contains": "time",
+            "values": {
+                "p(90)": 31851.53119,
+                "p(95)": 34578.657119999996,
+                "avg": 17728.592656925684,
+                "min": 164.675,
+                "med": 19237.26205,
+                "max": 40166.6014
+            },
+            "type": "trend"
+        },
+        "vus_max": {
+            "type": "gauge",
+            "contains": "default",
+            "values": {
+                "value": 210,
+                "min": 210,
+                "max": 210
+            }
+        },
+        "http_req_tls_handshaking": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "med": 0,
+                "max": 0,
+                "p(90)": 0,
+                "p(95)": 0,
+                "avg": 0,
+                "min": 0
+            }
+        },
+        "checks": {
+            "type": "rate",
+            "contains": "default",
+            "values": {
+                "rate": 0.7881149537262543,
+                "passes": 1618,
+                "fails": 435
+            }
+        },
+        "iteration_duration": {
+            "contains": "time",
+            "values": {
+                "p(95)": 68122.69626,
+                "avg": 39681.72138166664,
+                "min": 3163.0554,
+                "med": 34647.571599999996,
+                "max": 161946.164,
+                "p(90)": 49340.47088000001
+            },
+            "type": "trend"
+        },
+        "http_req_connecting": {
+            "values": {
+                "avg": 15.130976435810823,
+                "min": 0,
+                "med": 0,
+                "max": 127.5405,
+                "p(90)": 53.081520000000026,
+                "p(95)": 90.35200499999986
+            },
+            "type": "trend",
+            "contains": "time"
+        },
+        "http_req_receiving": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "avg": 0.09980388513513516,
+                "min": 0,
+                "med": 0,
+                "max": 1.1081,
+                "p(90)": 0.4972600000000003,
+                "p(95)": 0.613595
+            }
+        },
+        "vus": {
+            "type": "gauge",
+            "contains": "default",
+            "values": {
+                "min": 0,
+                "max": 110,
+                "value": 81
+            }
+        },
+        "http_req_blocked": {
+            "values": {
+                "p(90)": 53.12805000000002,
+                "p(95)": 91.09242999999998,
+                "avg": 15.282177195945964,
+                "min": 0,
+                "med": 0,
+                "max": 128.554
+            },
+            "type": "trend",
+            "contains": "time"
+        },
+        "http_req_failed": {
+            "type": "rate",
+            "contains": "default",
+            "values": {
+                "rate": 0.2660472972972973,
+                "passes": 315,
+                "fails": 869
+            }
+        },
+        "group_duration": {
+            "contains": "time",
+            "values": {
+                "min": 3163.0554,
+                "med": 35318.29875,
+                "max": 68120.7324,
+                "p(90)": 48016.92744,
+                "p(95)": 51444.534205,
+                "avg": 33413.728408044146
+            },
+            "type": "trend"
+        },
+        "http_reqs": {
+            "type": "counter",
+            "contains": "default",
+            "values": {
+                "count": 1184,
+                "rate": 3.2886184904550575
+            }
+        },
+        "http_req_sending": {
+            "contains": "time",
+            "values": {
+                "med": 0,
+                "max": 1.0486,
+                "p(90)": 0.021180000000000747,
+                "p(95)": 0.3535149999999998,
+                "avg": 0.0377177364864865,
+                "min": 0
+            },
+            "type": "trend"
+        },
+        "data_sent": {
+            "type": "counter",
+            "contains": "data",
+            "values": {
+                "count": 383959,
+                "rate": 1066.4650903518864
+            }
+        }
+    },
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": [
+            {
+                "checks": [
+                    {
+                        "name": "Status is 201",
+                        "path": "::Get Tweet::Status is 201",
+                        "id": "3aff4057e743cb2e4b6eea5c65035783",
+                        "passes": 107,
+                        "fails": 102
+                    },
+                    {
+                        "name": "Response includes token",
+                        "path": "::Get Tweet::Response includes token",
+                        "id": "fbd34cb1b5f3d53cebaf3a1bfa3dd20e",
+                        "passes": 107,
+                        "fails": 102
+                    },
+                    {
+                        "name": "Status is 200",
+                        "path": "::Get Tweet::Status is 200",
+                        "id": "747cb643a93cb3e070f4d18a445b4f56",
+                        "passes": 104,
+                        "fails": 3
+                    },
+                    {
+                        "name": "Tweet body is not empty",
+                        "path": "::Get Tweet::Tweet body is not empty",
+                        "id": "cc4f7d09a3e9c9245a95c4f58ca1626b",
+                        "passes": 104,
+                        "fails": 3
+                    }
+                ],
+                "name": "Get Tweet",
+                "path": "::Get Tweet",
+                "id": "4bdf4b20f1e050754f64ec1e10b91382",
+                "groups": []
+            },
+            {
+                "checks": [
+                    {
+                        "name": "Status is 201",
+                        "path": "::Post Tweet::Status is 201",
+                        "id": "c166932219f2428364dbd964adbb4d39",
+                        "passes": 192,
+                        "fails": 8
+                    },
+                    {
+                        "name": "Response includes token",
+                        "path": "::Post Tweet::Response includes token",
+                        "id": "1ad14318a6c2b4d9852bb71d5f5e9282",
+                        "passes": 96,
+                        "fails": 8
+                    },
+                    {
+                        "fails": 0,
+                        "name": "Tweet includes data",
+                        "path": "::Post Tweet::Tweet includes data",
+                        "id": "413dac21b52f912b812383baf2cb3203",
+                        "passes": 96
+                    }
+                ],
+                "name": "Post Tweet",
+                "path": "::Post Tweet",
+                "id": "2365e032f24a60fefedb225314dcc01a",
+                "groups": []
+            },
+            {
+                "name": "Retweet Tweet",
+                "path": "::Retweet Tweet",
+                "id": "11b523fb97fb9a1b79783b8cc3f5c2b2",
+                "groups": [],
+                "checks": [
+                    {
+                        "id": "40cdcdd56877d909f254cf551793e705",
+                        "passes": 94,
+                        "fails": 2,
+                        "name": "Status is 201",
+                        "path": "::Retweet Tweet::Status is 201"
+                    },
+                    {
+                        "fails": 2,
+                        "name": "Response includes token",
+                        "path": "::Retweet Tweet::Response includes token",
+                        "id": "b0cc809543f694047f69fa971eeb89f6",
+                        "passes": 94
+                    },
+                    {
+                        "name": "Status is 204",
+                        "path": "::Retweet Tweet::Status is 204",
+                        "id": "1320cc99f9fefaa2c5b826a1c614e0f9",
+                        "passes": 94,
+                        "fails": 0
+                    }
+                ]
+            },
+            {
+                "id": "9aad2c153db70f5351e4dd929f989950",
+                "groups": [],
+                "checks": [
+                    {
+                        "id": "0c9a2e788c040b477a21c4ac38c6a335",
+                        "passes": 91,
+                        "fails": 3,
+                        "name": "Status is 201",
+                        "path": "::Like Tweet::Status is 201"
+                    },
+                    {
+                        "name": "Response includes token",
+                        "path": "::Like Tweet::Response includes token",
+                        "id": "287dc1f21877059a0a8d984eab68e322",
+                        "passes": 91,
+                        "fails": 3
+                    },
+                    {
+                        "id": "fb6503c8950311aaf713f1b3e47e5c48",
+                        "passes": 0,
+                        "fails": 91,
+                        "name": "Status is 204",
+                        "path": "::Like Tweet::Status is 204"
+                    }
+                ],
+                "name": "Like Tweet",
+                "path": "::Like Tweet"
+            },
+            {
+                "checks": [
+                    {
+                        "name": "Status is 201",
+                        "path": "::Unlike Tweet::Status is 201",
+                        "id": "56b32c83500b5ae918432727e92dac75",
+                        "passes": 79,
+                        "fails": 0
+                    },
+                    {
+                        "name": "Response includes token",
+                        "path": "::Unlike Tweet::Response includes token",
+                        "id": "b4f9683bd5b336c5c453d3b6106f5147",
+                        "passes": 79,
+                        "fails": 0
+                    },
+                    {
+                        "name": "Status is 204",
+                        "path": "::Unlike Tweet::Status is 204",
+                        "id": "1e12e6d43122bdd166f89b354e1ea98e",
+                        "passes": 0,
+                        "fails": 74
+                    }
+                ],
+                "name": "Unlike Tweet",
+                "path": "::Unlike Tweet",
+                "id": "7602d6edcaa9d79cb1fd317e62a1ea66",
+                "groups": []
+            },
+            {
+                "checks": [
+                    {
+                        "name": "Status is 201",
+                        "path": "::Delete Tweet::Status is 201",
+                        "id": "13c97de1de4d75162c2afcefd4e2fee5",
+                        "passes": 47,
+                        "fails": 0
+                    },
+                    {
+                        "name": "Response includes token",
+                        "path": "::Delete Tweet::Response includes token",
+                        "id": "ed4e6b485fde548b03f1a81812a5b5ad",
+                        "passes": 47,
+                        "fails": 0
+                    },
+                    {
+                        "name": "Status is 404",
+                        "path": "::Delete Tweet::Status is 404",
+                        "id": "27b8c826a1371686f8939a126cf4444b",
+                        "passes": 0,
+                        "fails": 30
+                    }
+                ],
+                "name": "Delete Tweet",
+                "path": "::Delete Tweet",
+                "id": "0d8f38737e4f29ac3671e146099dc7a4",
+                "groups": []
+            },
+            {
+                "name": "Get Tweet Replies",
+                "path": "::Get Tweet Replies",
+                "id": "5d3d712dce45c31a5718aca63bece77a",
+                "groups": [],
+                "checks": [
+                    {
+                        "name": "Status is 201",
+                        "path": "::Get Tweet Replies::Status is 201",
+                        "id": "81a494d19ab9f6da4c7101e0ba1848c0",
+                        "passes": 21,
+                        "fails": 0
+                    },
+                    {
+                        "id": "30ed2307a67ee2ac1cad798032467b85",
+                        "passes": 21,
+                        "fails": 0,
+                        "name": "Response includes token",
+                        "path": "::Get Tweet Replies::Response includes token"
+                    },
+                    {
+                        "name": "Status is 200",
+                        "path": "::Get Tweet Replies::Status is 200",
+                        "id": "25b646a67c46a1abbf85dbb01debc547",
+                        "passes": 16,
+                        "fails": 0
+                    }
+                ]
+            },
+            {
+                "name": "Get Tweet Retweeters",
+                "path": "::Get Tweet Retweeters",
+                "id": "be7a008f96dea17e215e5daefc2f6571",
+                "groups": [],
+                "checks": [
+                    {
+                        "name": "Status is 201",
+                        "path": "::Get Tweet Retweeters::Status is 201",
+                        "id": "c2bfa6c28b4b6817c268d01c20b14a0a",
+                        "passes": 14,
+                        "fails": 0
+                    },
+                    {
+                        "path": "::Get Tweet Retweeters::Response includes token",
+                        "id": "9c12f19d8509159a1c33b7587172a563",
+                        "passes": 14,
+                        "fails": 0,
+                        "name": "Response includes token"
+                    },
+                    {
+                        "name": "Status is 200",
+                        "path": "::Get Tweet Retweeters::Status is 200",
+                        "id": "2715807e55fe4d9bae0eac7964a8b61f",
+                        "passes": 10,
+                        "fails": 0
+                    }
+                ]
+            },
+            {
+                "name": "Get Tweet Likers",
+                "path": "::Get Tweet Likers",
+                "id": "ecdb1c9dc917827f26f9486b442cdfaa",
+                "groups": [],
+                "checks": [
+                    {
+                        "name": "Status is 201",
+                        "path": "::Get Tweet Likers::Status is 201",
+                        "id": "a538fe8778c43d34126aa256dae73325",
+                        "passes": 0,
+                        "fails": 2
+                    },
+                    {
+                        "passes": 0,
+                        "fails": 2,
+                        "name": "Response includes token",
+                        "path": "::Get Tweet Likers::Response includes token",
+                        "id": "e1e6607d9573867d5d81d541af930781"
+                    }
+                ]
+            }
+        ],
+        "checks": []
+    }
+}
