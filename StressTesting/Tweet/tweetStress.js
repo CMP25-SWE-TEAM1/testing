@@ -189,10 +189,6 @@ export default function () {
     const tweetId = "6560bb6cb12eb3bc02129bb1";
     const tweetUrl = `http://backend.gigachat.cloudns.org/api/tweets/retweeters/${tweetId}`;
 
-    const payload = JSON.stringify({
-      tweetId: "6560bb6cb12eb3bc02129bb1",
-    });
-
     const tweetHeaders = {
       headers: {
         "Content-Type": "application/json",
@@ -230,9 +226,11 @@ export default function () {
     console.log(tweetResponse.body);
     sleep(1);
   });
+
+  // UNTESTED
   group("Tweet Search With Word.", function () {
     const authToken = getToken();
-    const tweetWord = "apples";
+    const word = "apples";
     const tweetUrl = `http://backend.gigachat.cloudns.org/api/tweets/search/${word}`;
 
     const tweetHeaders = {
