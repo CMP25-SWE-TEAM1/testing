@@ -230,7 +230,28 @@ export default function () {
     console.log(tweetResponse.body);
     sleep(1);
   });
-  group("Tweet Search With Word.", function () {});
+  group("Tweet Search With Word.", function () {
+    const authToken = getToken();
+    const tweetWord = "apples";
+    const tweetUrl = `http://backend.gigachat.cloudns.org/api/tweets/search/${word}`;
+
+    const tweetHeaders = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+    };
+
+    const tweetResponse = http.get(tweetUrl, tweetHeaders);
+
+    check(tweetResponse, {
+      "Status is 200": (r) => r.status === 200,
+      "Tweet body is not empty": (r) => JSON.parse(r.body).data !== undefined,
+    });
+
+    console.log(tweetResponse.body);
+    sleep(1);
+  });
 }
 
 export function handleSummary(data) {
