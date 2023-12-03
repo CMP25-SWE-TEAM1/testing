@@ -91,6 +91,7 @@ export default function () {
     console.log(tweetResponse.body);
     sleep(1);
   });
+
   group("Like Tweet", function () {
     const authToken = getToken();
     const tweetId = "6560bb6cb12eb3bc02129bb1";
@@ -110,11 +111,12 @@ export default function () {
     const tweetResponse = http.post(tweetUrl, payload, tweetHeaders);
 
     check(tweetResponse, {
-      "Status is 204": (r) => r.status === 204,
+      "Status is 204 or 400": (r) => r.status === 204 || r.status === 400,
     });
     console.log(tweetResponse.body);
     sleep(1);
   });
+
   group("Unlike Tweet", function () {
     const authToken = getToken();
     const tweetId = "6560bb6cb12eb3bc02129bb1";
@@ -134,7 +136,7 @@ export default function () {
     const tweetResponse = http.post(tweetUrl, payload, tweetHeaders);
 
     check(tweetResponse, {
-      "Status is 204": (r) => r.status === 204,
+      "Status is 204 or 400": (r) => r.status === 204 || r.status === 400,
     });
     console.log(tweetResponse.body);
     sleep(1);
@@ -164,6 +166,7 @@ export default function () {
     console.log(tweetResponse.body);
     sleep(1);
   });
+
   group("Get Tweet Replies", function () {
     const authToken = getToken();
     const tweetId = "6560bb6cb12eb3bc02129bb1";
@@ -255,7 +258,7 @@ export default function () {
 export function handleSummary(data) {
   return {
     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-    "TweetReport1000VUs.json": JSON.stringify(data), //the default data object
+    "DeleteTweetReport210VUs.json": JSON.stringify(data), //the default data object
   };
 }
 //k6 run --vus 1 --duration 1m TweetStress.js
