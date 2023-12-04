@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//android.widget.ScrollView/android.view.View[@content-desc=\"Posts Tab 1 of 4\"]"
+}

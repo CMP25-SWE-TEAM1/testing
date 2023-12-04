@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//android.view.View[@content-desc=\"Posts\n          Tab 1 of 4\"]"
+}

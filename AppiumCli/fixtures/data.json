@@ -6,5 +6,6 @@
     "invalidEmail": "ibraheim tarek@gmail.com",
     "validPassword": "anything",
     "invalidPassword": "11111111",
-    "adminValidationCode": "1111111111"
+    "adminValidationCode": "1111111111",
+    "excedingCharacterlimit": "A software testing scenario is a detailed description of a specific situation or condition under which software is tested. It outlines the test environment, input data, expected outcomes, and the steps to be followed during testing. The primary goal of creating testing scenarios is to ensure that the software or application is thoroughly tested and that all relevant aspects are covered."
 }
