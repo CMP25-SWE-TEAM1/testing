@@ -98,6 +98,7 @@ describe("My Sign up with new account", () => {
     skipForNowButton = await RegisterPage.skipForNowButton;
     await skipForNowButton.click();
 
+    //check for home page if it exists
     const forYouTab = await HomePage.getTab("For you").tabElement;
     let forYouTabText = await forYouTab.getAttribute("content-desc");
 

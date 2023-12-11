@@ -1,4 +1,0 @@
-{
-  "using": "xpath",
-  "value": "//android.widget.Button[@index=\"0\"]/android.widget.Button[7]"
-}

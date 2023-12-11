@@ -4,10 +4,6 @@ const HomePage = require("../pageobjects/homePage");
 const expect = require("chai").expect;
 describe("My Login application", () => {
   beforeEach(async () => {
-    // const userbutton = await HomePage.userButton;
-    // await userbutton.click();
-    // const fistloginButton = await HomePage.loginButton;
-    // await fistloginButton.click();
     const loginButton = await LoginPage.loginButton;
     await loginButton.click();
     await driver.pause(1000);
@@ -21,9 +17,7 @@ describe("My Login application", () => {
     await (await LoginPage.userNameField).clearValue();
     await (await LoginPage.userNameField).addValue(User.validEmail);
     await (await LoginPage.nextButton).click();
-    await (await LoginPage.userNameView).getText();
-    // let txt = await (await LoginPage.userNameView).getText(); // returns multiple view with the same index
-    // expect(txt).equal(User.validUsername);
+
     await (await LoginPage.userPasswordField).click();
     await (await LoginPage.userPasswordField).clearValue();
     await (await LoginPage.userPasswordField).addValue(User.validPassword);
@@ -31,7 +25,16 @@ describe("My Login application", () => {
     await (await LoginPage.loginButton).click();
     expect(await (await LoginPage.wrongPasswordMessage).isDisplayed()).to.be
       .false;
-    await driver.pause(3000);
+
+    await driver.pause(1000);
+    const followingTab = await HomePage.getTab("Following").tabElement;
+    let followingText = await followingTab.getAttribute("content-desc");
+
+    let followingWord = followingText.substring(0, 9);
+    expect(followingWord).equal("Following");
+
+    expect(await followingTab.isEnabled()).to.be.true;
+    await driver.pause(1000);
   });
   it("login with valid username", async () => {
     await (await LoginPage.userNameField).click();

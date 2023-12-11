@@ -25,6 +25,40 @@ class TweetPage {
   get quoteButton() {
     return $(`//android.widget.Button[@content-desc="Quote"]`);
   }
+  get allowAccessButton() {
+    return $(
+      `//android.widget.LinearLayout[@resource-id="com.android.permissioncontroller:id/grant_dialog"]/android.widget.LinearLayout[2]/android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]`
+    );
+  }
+  getImageFromTheGallery(index) {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ImageView[${index}]`
+    );
+  }
+  getVideoFormTheGallery() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View`
+    );
+  }
+  get rightButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.Button[3]`
+    );
+  }
+
+  get tweetTextForm() {
+    return $("//android.widget.EditText");
+  }
+  get postButton() {
+    return $(
+      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button'
+    );
+  }
+  get addImageButton() {
+    return $(
+      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]'
+    );
+  }
 }
 
 module.exports = new TweetPage();

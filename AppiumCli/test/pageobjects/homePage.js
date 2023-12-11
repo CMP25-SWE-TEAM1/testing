@@ -45,19 +45,7 @@ class HomePage {
       '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.Button'
     );
   }
-  get tweetTextForm() {
-    return $("//android.widget.EditText");
-  }
-  get postButton() {
-    return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button'
-    );
-  }
-  get addImageButton() {
-    return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]'
-    );
-  }
+
 
   getTab(tabType) {
     return this.tabFactory.createTab(tabType);

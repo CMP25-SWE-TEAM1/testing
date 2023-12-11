@@ -1,4 +1,0 @@
-{
-  "using": "xpath",
-  "value": "//android.widget.ScrollView/android.widget.EditText[0]"
-}
