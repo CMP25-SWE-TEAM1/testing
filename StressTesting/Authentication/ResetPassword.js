@@ -1,6 +1,4 @@
 import http from 'k6/http';
-import { sleep } from 'k6';
-import { check } from 'k6';
 import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
 // export const options={
 //     vus: 10,
@@ -25,21 +23,24 @@ import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
  const userEmail = "mahmoud.khattab13@gmail.com";
  const userPassword = "deaddead";
 
+
+ 
 export default function getToken() {
-  const url = 'http://backend.gigachat.cloudns.org/api/user/profile/';
+  const url = 'http://backend.gigachat.cloudns.org/api/user/resetpassword/';
   
   const payload = JSON.stringify({
-    password: 'deadead'
+    password: 'deaddead',
+    passwordResetToken: 'abcdef'
   });
 
   const params = {
     headers: {
       "Content-Type": "application/json",
-      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjNhMzcwZGJkYzA2YzkyZjg2ZTRhYiIsImlhdCI6MTcwMTAyOTAxNiwiZXhwIjoxNzA4ODA1MDE2fQ.LoAtLJAoURxZ9YtQ01VNx5t-RLqgwKPTxSHekF-jpsk"
+      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjNhMzcwZGJkYzA2YzkyZjg2ZTRhYiIsImlhdCI6MTcwMTc3NDUwMSwiZXhwIjoxNzA5NTUwNTAxfQ.u8kUPL5dWE4mgWhN85rW0h8m6aEXl8S-VtN_dgKepw0"
     },
   };  
 
-  const res = http.post(url,payload,params);
+  const res = http.patch(url,payload,params);
 
   check(res, {
     "Status is 200": (r) => r.status === 200,
