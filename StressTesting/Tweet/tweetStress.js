@@ -144,12 +144,9 @@ export default function () {
 
   group("Delete Tweet", function () {
     const authToken = getToken();
-    const tweetId = "55555555555555";
-    const tweetUrl = `http://backend.gigachat.cloudns.org/api/tweets/${tweetId}`;
+    const tweetUrl = `http://backend.gigachat.cloudns.org/api/tweets/656b4246ce181e091f44ed68`;
 
-    const payload = JSON.stringify({
-      tweetId: "55555555555555",
-    });
+    const payload = JSON.stringify({});
 
     const tweetHeaders = {
       headers: {

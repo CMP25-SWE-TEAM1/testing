@@ -5,10 +5,11 @@ const expect = require("chai").expect;
 
 describe("My Sign up with new account", () => {
   beforeEach(async () => {
-    const userbutton = await HomePage.userButton;
-    await userbutton.click();
-    const fistCreatAccountbutton = await HomePage.creatAccountButton;
-    await fistCreatAccountbutton.click();
+    // const userbutton = await HomePage.userButton;
+    // await userbutton.click();
+    // const fistCreatAccountbutton = await HomePage.creatAccountButton;
+    // await fistCreatAccountbutton.click();
+    await driver.touchAction([{ action: "tap", x: 550, y: 1909 }]);
     const creatAccountbutton = await RegisterPage.creatAccountButton;
     await creatAccountbutton.click();
     await driver.pause(1000);
@@ -75,6 +76,43 @@ describe("My Sign up with new account", () => {
     expect(expectedAge).equal(User.validUserAge);
 
     await (await RegisterPage.signUpButton).click();
+
+    await driver.pause(2000);
+    const verifyCodeForm = await RegisterPage.getFormWithIndex(0);
+    await verifyCodeForm.click();
+    await verifyCodeForm.addValue(User.adminValidationCode);
+
+    let nextBtn = await RegisterPage.nextButton;
+    await nextBtn.click();
+
+    const passwordForm = await RegisterPage.getFormWithIndex(0);
+    await passwordForm.click();
+    await passwordForm.addValue(User.validPassword);
+
+    nextBtn = await RegisterPage.nextButton;
+    await nextBtn.click();
+
+    let skipForNowButton = await RegisterPage.skipForNowButton;
+    await skipForNowButton.click();
+
+    skipForNowButton = await RegisterPage.skipForNowButton;
+    await skipForNowButton.click();
+
+    const forYouTab = await HomePage.getTab("For you").tabElement;
+    let forYouTabText = await forYouTab.getAttribute("content-desc");
+
+    let forYouTabWord = forYouTabText.substring(0, 7);
+    expect(forYouTabWord).equal("For you");
+
+    expect(await forYouTab.isEnabled()).to.be.true;
+
+    const followingTab = await HomePage.getTab("Following").tabElement;
+    let followingText = await followingTab.getAttribute("content-desc");
+
+    let followingWord = followingText.substring(0, 9);
+    expect(followingWord).equal("Following");
+
+    expect(await followingTab.isEnabled()).to.be.true;
     await driver.pause(1000);
   });
 
@@ -125,4 +163,4 @@ describe("My Sign up with new account", () => {
 //npx wdio
 //./node_modules/.bin/wdio wdio.conf.js --spec ./test/specs/register.e2e.js
 //need await to get the item and another await to apply the fuction
-//allure generate allure-results && allure open
+//allure generate --clean allure-results && allure open

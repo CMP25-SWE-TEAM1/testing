@@ -4,10 +4,10 @@ const HomePage = require("../pageobjects/homePage");
 const expect = require("chai").expect;
 describe("My Login application", () => {
   beforeEach(async () => {
-    const userbutton = await HomePage.userButton;
-    await userbutton.click();
-    const fistloginButton = await HomePage.loginButton;
-    await fistloginButton.click();
+    // const userbutton = await HomePage.userButton;
+    // await userbutton.click();
+    // const fistloginButton = await HomePage.loginButton;
+    // await fistloginButton.click();
     const loginButton = await LoginPage.loginButton;
     await loginButton.click();
     await driver.pause(1000);

@@ -1,9 +1,11 @@
 const { $, $$ } = require("@wdio/globals");
-
 /**
  * sub page containing specific selectors and methods for a specific page
  */
 class HomePage {
+  constructor() {
+    this.tabFactory = new TabFactory();
+  }
   get userButton() {
     return $(
       '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button'
@@ -56,8 +58,36 @@ class HomePage {
       '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]'
     );
   }
-}
 
+  getTab(tabType) {
+    return this.tabFactory.createTab(tabType);
+  }
+}
+class TabFactory {
+  createTab(tabType) {
+    switch (tabType) {
+      case "For you":
+        return new Tab(
+          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[1]`
+        );
+      case "Following":
+        return new Tab(
+          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[2]`
+        );
+      default:
+        throw new Error(`Invalid tab type: ${tabType}`);
+    }
+  }
+}
+class Tab {
+  constructor(selector) {
+    this.selector = selector;
+  }
+
+  get tabElement() {
+    return $(this.selector);
+  }
+}
 module.exports = new HomePage();
 //$ to capture on element
 //$$ to capture all elements

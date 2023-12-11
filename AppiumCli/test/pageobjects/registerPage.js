@@ -21,6 +21,9 @@ class RegisterPage {
       `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[@content-desc="Can't sign up right now"]`
     );
   }
+  get skipForNowButton() {
+    return $(`//android.widget.Button[@content-desc="Skip for now"]`);
+  }
   async getFormWithIndex(index) {
     return $$(`android.widget.EditText`)[index];
   }
