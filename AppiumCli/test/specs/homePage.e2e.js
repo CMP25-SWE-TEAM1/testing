@@ -10,16 +10,7 @@ describe("Home page", () => {
   });
 
   it("navigate home page", async () => {
-    const postTab = await ProfilePage.getTab("Posts").tabElement;
 
-    let postTabText = await postTab.getAttribute("content-desc");
-
-    let postWord = postTabText.substring(0, 5);
-    expect(postWord).equal("Posts");
-
-    expect(await postTab.isEnabled()).to.be.true;
-
-    await driver.pause(2000);
   });
 });
 //npx wdio

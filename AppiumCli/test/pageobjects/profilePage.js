@@ -8,7 +8,7 @@ class ProfilePage {
     return $('//android.widget.Button[@content-desc="Edit profile"]');
   }
   get bannerImage() {
-    return $("//android.widget.ImageView");
+    return $("//android.widget.ScrollView/android.view.View[2]");
   }
   get userImage() {
     return $("//android.widget.ScrollView/android.view.View[1]");
@@ -43,7 +43,26 @@ class ProfilePage {
       `//android.widget.ScrollView/android.view.View[15]/android.view.View/android.view.View/android.widget.Button[@index="0"]`
     );
   }
-
+  get firstTweetOptions() {
+    return $(
+      `//android.widget.ScrollView/android.view.View[15]/android.view.View/android.view.View/android.widget.Button[@index="0"]//android.widget.Button[1]`
+    );
+  }
+  get deletePostButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button`
+    );
+  }
+  get profileOptionsButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[3]`
+    );
+  }
+  get blockButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.widget.Button[2]`
+    );
+  }
   getTab(tabType) {
     return this.tabFactory.createTab(tabType);
   }

@@ -1,20 +1,26 @@
 const { $, $$ } = require("@wdio/globals");
 
 class TweetPage {
+  get userInformationLink() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.Button/android.view.View[1]`
+    );
+  }
   get retweetNumber() {
-    return $(`//android.widget.Button[@index="0"]/android.widget.Button[4]`);
+    return $(`//android.widget.Button[@index="0"]/android.widget.Button[2]`);
   }
   get likersNumber() {
-    return $(`//android.widget.Button[@index="0"]/android.widget.Button[5]`);
+    return $(`//android.widget.Button[@index="0"]/android.widget.Button[3]`);
   }
   get replyButton() {
-    return $(`//android.widget.Button[@index="0"]/android.widget.Button[6]`);
+    return $(`//android.widget.Button[@index="0"]/android.widget.Button[4]`);
   }
+
   get retweetButton() {
-    return $(`//android.widget.Button[@index="0"]/android.widget.Button[7]`);
+    return $(`//android.widget.Button[@index="0"]/android.widget.Button[5]`);
   }
   get likeButton() {
-    return $(`//android.widget.Button[@index="0"]/android.widget.Button[8]`);
+    return $(`//android.widget.Button[@index="0"]/android.widget.Button[6]`); //8
   }
   get undoRepostButton() {
     return $(`//android.widget.Button[@content-desc="Undo Repost"]`);
@@ -57,6 +63,11 @@ class TweetPage {
   get addImageButton() {
     return $(
       '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]'
+    );
+  }
+  get firstComment() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.Button[2]`
     );
   }
 }

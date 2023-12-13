@@ -6,6 +6,32 @@ class HomePage {
   constructor() {
     this.tabFactory = new TabFactory();
   }
+  get searchButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[3]`
+    );
+  }
+  async getSearchForm(index) {
+    if (index == 1)
+      return $(
+        `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View[1]`
+      );
+    else
+      return $(
+        `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.EditText`
+      );
+  }
+
+  get peopleTab() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[2]`
+    );
+  }
+  get firstUserInSearch() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
+    );
+  }
   get userButton() {
     return $(
       '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button'
@@ -19,6 +45,12 @@ class HomePage {
   }
   get profileTab() {
     return $('//android.view.View[@content-desc="Profile"]');
+  }
+
+  get firstTweet() {
+    return $(
+      `//android.widget.ScrollView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
+    );
   }
 
   composePost(index) {
@@ -45,7 +77,6 @@ class HomePage {
       '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.Button'
     );
   }
-
 
   getTab(tabType) {
     return this.tabFactory.createTab(tabType);
