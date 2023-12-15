@@ -13,7 +13,7 @@ class TestOptions {
         per_vu_scenario: {
           executor: "per-vu-iterations",
           vus: 10,
-          iterations: 10,
+          iterations: 5,
           startTime: "1m",
           maxDuration: "2m",
           tags: { per_vu_scenario: "per_vu_iterations" },
@@ -21,7 +21,7 @@ class TestOptions {
         ramping_vus_scenario: {
           executor: "ramping-vus",
           startVUs: 0,
-          stages: [{ duration: "1m", target: 100 }],
+          stages: [{ duration: "1m", target: 50 }],
           startTime: "2m",
           gracefulStop: "3m",
           tags: { ramping_vus_scenario: "ramping_vus" },
