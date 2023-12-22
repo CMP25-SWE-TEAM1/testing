@@ -44,8 +44,92 @@ describe("Search and Trends", () => {
     expect(userName).to.be.equal("Youssef");
     await driver.pause(2000);
   });
+
+  it("search for tweet", async () => {
+    const searchButton = await HomePage.searchButton;
+    await searchButton.click();
+    let searchForm = await HomePage.getSearchForm(1);
+    await searchForm.click();
+
+    await (await HomePage.getSearchForm(2)).click();
+    await (await HomePage.getSearchForm(2)).addValue("gg");
+    await driver.execute("mobile: performEditorAction", { action: "search" });
+
+    await driver.pause(1000);
+
+    const peopleTab = await HomePage.topTab;
+    await peopleTab.click();
+
+    await driver.pause(2000);
+
+    const firstUserInSearch = await HomePage.firstTweetInSearch;
+    let tweetInformation = await firstUserInSearch.getAttribute("content-desc");
+    flag = tweetInformation.includes("gg");
+    expect(flag).to.be.true;
+
+    await driver.pause(2000);
+  });
+  it("search for hashtag", async () => {
+    const searchButton = await HomePage.searchButton;
+    await searchButton.click();
+    let searchForm = await HomePage.getSearchForm(1);
+    await searchForm.click();
+
+    await (await HomePage.getSearchForm(2)).click();
+    await (await HomePage.getSearchForm(2)).addValue("#Egypt");
+    await driver.execute("mobile: performEditorAction", { action: "search" });
+
+    await driver.pause(3000);
+
+    const peopleTab = await HomePage.topTab;
+    await peopleTab.click();
+
+    await driver.pause(2000);
+
+    const tweetHashtags = await HomePage.firstTweetHashtagsInSearch;
+
+    let flag = false;
+    for (const element of tweetHashtags) {
+      let hashtag = await element.getAttribute("content-desc");
+      if (hashtag.includes("#Egypt")) {
+        flag = true;
+        break;
+      }
+    }
+
+    expect(flag).to.be.true;
+
+    await driver.pause(2000);
+  });
+
+  it.only("click on hashtags", async () => {
+    const searchButton = await HomePage.searchButton;
+    await searchButton.click();
+    let searchForm = await HomePage.getSearchForm(1);
+    await searchForm.click();
+
+    await (await HomePage.getSearchForm(2)).click();
+    await (await HomePage.getSearchForm(2)).addValue("#Egypt");
+    await driver.execute("mobile: performEditorAction", { action: "search" });
+
+    await driver.pause(3000);
+
+    const peopleTab = await HomePage.topTab;
+    await peopleTab.click();
+
+    await driver.pause(2000);
+
+    const tweetHashtags = await HomePage.firstTweetHashtagsInSearch;
+
+    for (const hashtag of tweetHashtags) {
+      let isClickableHashtag = await hashtag.isEnabled();
+      expect(isClickableHashtag).to.be.true;
+    }
+
+    await driver.pause(2000);
+  });
 });
 //npx wdio
 //./node_modules/.bin/wdio wdio.conf.js --spec ./test/specs/searchAndHashtags.e2e.js
 //need await to get the item and another await to apply the fuction
-//allure generate allure-results && allure open
+//allure generate --clear allure-results && allure open

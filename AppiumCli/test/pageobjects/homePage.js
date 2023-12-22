@@ -11,6 +11,18 @@ class HomePage {
       `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[3]`
     );
   }
+
+  async getSearchForm(index) {
+    if (index == 1)
+      return $(
+        `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View[1]`
+      );
+    else
+      return $(
+        `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.EditText`
+      );
+  }
+
   async getSearchForm(index) {
     if (index == 1)
       return $(
@@ -27,9 +39,26 @@ class HomePage {
       `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[2]`
     );
   }
+
+  get topTab() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1]`
+    );
+  }
   get firstUserInSearch() {
     return $(
       `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
+    );
+  }
+  get firstTweetInSearch() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.widget.ScrollView/android.widget.Button[1]`
+    );
+  }
+
+  get firstTweetHashtagsInSearch() {
+    return $$(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]/android.view.View[2]/android.widget.Button`
     );
   }
   get userButton() {
@@ -47,9 +76,17 @@ class HomePage {
     return $('//android.view.View[@content-desc="Profile"]');
   }
 
+  get settingAndSupportTab() {
+    return $('//android.view.View[@content-desc="Settings & Support"]');
+  }
+
+  get settingAndPrivacyTab() {
+    return $('//android.view.View[@content-desc="Settings and privacy"]');
+  }
+
   get firstTweet() {
     return $(
-      `//android.widget.ScrollView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
+      `//android.widget.ScrollView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button`
     );
   }
 
