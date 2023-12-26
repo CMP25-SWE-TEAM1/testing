@@ -12,44 +12,27 @@ describe("User Settings", () => {
 
     const userbutton = await HomePage.userButton;
     await userbutton.click();
-
     await driver.pause(1000);
-
-    await browser.performActions([
-      {
-        type: "pointer",
-        id: "finger1",
-        parameters: { pointerType: "touch" },
-        actions: [
-          { type: "pointerMove", duration: 0, x: 700, y: 1500 },
-          { type: "pointerDown", button: 0 },
-          { type: "pointerMove", duration: 100, x: 700, y: 1200 },
-          { type: "pointerUp", button: 0 },
-        ],
-      },
+    await driver.touchAction([
+      { action: "longPress", x: 570, y: 1711 },
+      { action: "moveTo", x: 570, y: 638 },
+      "release",
     ]);
 
-    await driver.pause(1000);
+    const settingAndSupportTab = await HomePage.settingAndSupportTab;
+    await settingAndSupportTab.click();
 
-    await (await HomePage.settingAndSupportTab).click();
-
-    await browser.performActions([
-      {
-        type: "pointer",
-        id: "finger1",
-        parameters: { pointerType: "touch" },
-        actions: [
-          { type: "pointerMove", duration: 0, x: 700, y: 1500 },
-          { type: "pointerDown", button: 0 },
-          { type: "pointerMove", duration: 100, x: 700, y: 1200 },
-          { type: "pointerUp", button: 0 },
-        ],
-      },
+    await driver.touchAction([
+      { action: "longPress", x: 570, y: 1571 },
+      { action: "moveTo", x: 570, y: 448 },
+      "release",
     ]);
 
-    await (await HomePage.settingAndPrivacyTab).click();
+    const settingAndPrivacyTab = await HomePage.settingAndPrivacyTab;
+    await settingAndPrivacyTab.click();
     await driver.pause(1000);
   });
+
   afterEach(async () => {
     await driver.reloadSession();
   });
@@ -63,7 +46,6 @@ describe("User Settings", () => {
     await blockedAccounts.click();
     const blockedButtons = await settingsPage.blockedButtons;
     await driver.pause(2000);
-
     let flag = true;
     for (const button of blockedButtons) {
       let check = await button.isEnabled();
@@ -71,10 +53,9 @@ describe("User Settings", () => {
         flag = false;
       }
     }
-
     expect(flag).to.be.true;
   });
-  it.only("unmute users", async () => {
+  it("unmute users", async () => {
     const pravicyAndSafty = await settingsPage.pravicyAndSafty;
     await pravicyAndSafty.click();
     const muteAndBlock = await settingsPage.muteAndBlock;
@@ -84,13 +65,13 @@ describe("User Settings", () => {
     const mutedButtons = await settingsPage.mutedButtons;
     await driver.pause(2000);
 
-    let flag = false;
-    // for (const button of mutedButtons) {
-    //   let check = await button.isEnabled();
-    //   if (check != true) {
-    //     flag = false;
-    //   }
-    // }
+    let flag = true;
+    for (const button of mutedButtons) {
+      let check = await button.isEnabled();
+      if (check != true) {
+        flag = false;
+      }
+    }
     expect(flag).to.be.true;
   });
 });

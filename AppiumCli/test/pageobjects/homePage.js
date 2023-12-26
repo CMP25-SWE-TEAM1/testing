@@ -6,12 +6,26 @@ class HomePage {
   constructor() {
     this.tabFactory = new TabFactory();
   }
+  get allowNotificationButton() {
+    return $(
+      `//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]`
+    );
+  }
   get searchButton() {
     return $(
       `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[3]`
     );
   }
-
+  get notificationButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[4]`
+    );
+  }
+  get allNotifications() {
+    return $$(
+      `//android.widget.ScrollView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View`
+    );
+  }
   async getSearchForm(index) {
     if (index == 1)
       return $(
@@ -63,7 +77,7 @@ class HomePage {
   }
   get userButton() {
     return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button'
+      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button'
     );
   }
   get creatAccountButton() {
@@ -122,13 +136,9 @@ class HomePage {
 class TabFactory {
   createTab(tabType) {
     switch (tabType) {
-      case "For you":
-        return new Tab(
-          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[1]`
-        );
       case "Following":
         return new Tab(
-          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[2]`
+          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[1]`
         );
       default:
         throw new Error(`Invalid tab type: ${tabType}`);

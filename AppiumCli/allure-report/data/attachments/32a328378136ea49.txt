@@ -1,4 +1,0 @@
-{
-  "using": "xpath",
-  "value": "//android.widget.LinearLayout[@resource-id=\"com.android.permissioncontroller:id/grant_dialog\"]/android.widget.LinearLayout[2]/android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]"
-}

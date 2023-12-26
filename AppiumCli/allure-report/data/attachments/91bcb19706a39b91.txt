@@ -1,8 +1,0 @@
-{
-  "script": "mobile: performEditorAction",
-  "args": [
-    {
-      "action": "search"
-    }
-  ]
-}

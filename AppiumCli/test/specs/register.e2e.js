@@ -9,7 +9,7 @@ describe("My Sign up with new account", () => {
     // await userbutton.click();
     // const fistCreatAccountbutton = await HomePage.creatAccountButton;
     // await fistCreatAccountbutton.click();
-    await driver.touchAction([{ action: "tap", x: 550, y: 1909 }]);
+    await driver.touchAction([{ action: "tap", x: 550, y: 1909 }]); //click on signup link
     const creatAccountbutton = await RegisterPage.creatAccountButton;
     await creatAccountbutton.click();
     await driver.pause(1000);

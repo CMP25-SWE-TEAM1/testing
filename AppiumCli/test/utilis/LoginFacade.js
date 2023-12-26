@@ -1,31 +1,25 @@
 const LoginPage = require("../pageobjects/loginPage"); // Adjust the path as needed
-
+const HomePage = require("../pageobjects/homePage");
 class LoginFacade {
   static async performLogin(username, password) {
     const loginButton = await LoginPage.loginButton;
     await loginButton.click();
     await driver.pause(1000);
+    await (await LoginPage.userNameField).click();
+    await (await LoginPage.userNameField).clearValue();
+    await (await LoginPage.userNameField).addValue(username);
+    await (await LoginPage.nextButton).click();
 
-    const userNameField = await LoginPage.userNameField;
-    await userNameField.click();
-    await userNameField.clearValue();
-    await userNameField.addValue(username);
+    await (await LoginPage.userNameView).getText();
+    await (await LoginPage.userPasswordField).click();
+    await (await LoginPage.userPasswordField).clearValue();
+    await (await LoginPage.userPasswordField).addValue(password);
+    await (await LoginPage.showPasswordButton).click();
+    await (await LoginPage.loginButton).click();
+    await driver.pause(2000);
 
-    const nextButton = await LoginPage.nextButton;
-    await nextButton.click();
-
-    const userNameView = await LoginPage.userNameView;
-    await userNameView.getText();
-
-    const userPasswordField = await LoginPage.userPasswordField;
-    await userPasswordField.click();
-    await userPasswordField.clearValue();
-    await userPasswordField.addValue(password);
-
-    const showPasswordButton = await LoginPage.showPasswordButton;
-    await showPasswordButton.click();
-
-    await loginButton.click(); // Assuming this is the final login button
+    const allowNotificationButton = await HomePage.allowNotificationButton;
+    await allowNotificationButton.click();
     await driver.pause(2000);
   }
 }

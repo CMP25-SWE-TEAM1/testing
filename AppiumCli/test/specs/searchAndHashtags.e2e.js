@@ -132,4 +132,4 @@ describe("Search and Trends", () => {
 //npx wdio
 //./node_modules/.bin/wdio wdio.conf.js --spec ./test/specs/searchAndHashtags.e2e.js
 //need await to get the item and another await to apply the fuction
-//allure generate --clear allure-results && allure open
+//allure generate --clean allure-results && allure open
