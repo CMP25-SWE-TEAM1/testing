@@ -28,7 +28,7 @@ export const options = {
 
 export default function () {
   group("Verify homepage following tweets", function(){
-    const url = 'http://backend.gigachat.cloudns.org/api/homepage/following?page=1&count=10';
+    const url = 'http://backend.gigachat.cloudns.org/api/homepage/mention?page=1&count=10';
   
   const payload = JSON.stringify({
     page: 1,
@@ -59,7 +59,7 @@ export default function () {
 export function handleSummary(data) {
   return {
     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-    "followingReport.json": JSON.stringify(data), //the default data object
+    "MentionsReport.json": JSON.stringify(data), //the default data object
   };
 } 
   //sleep(1);
