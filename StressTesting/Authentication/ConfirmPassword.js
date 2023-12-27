@@ -21,14 +21,14 @@ export const options = {
     },
   },
 };
- const userEmail = "mahmoud.khattab13@gmail.com";
- const userPassword = "deaddead";
+ const userEmail = "mahmoud_ossama";
+ const userPassword = "alhamdulillah";
 
 export default function () {
-  group("check for the applicability of the user in terms of his/her age", function(){
-    const url = 'http://backend.gigachat.cloudns.org/api/user/checkBirthDate';
-  const payload = JSON.stringify({
-    birthDate: '11-9-2001'
+  group("check for the login success", function(){
+    const url = 'http://backend.gigachat.cloudns.org/api/user/confirmPassword';
+    const payload = JSON.stringify({
+    password: userPassword,
   });
 
   const params = {
@@ -38,7 +38,7 @@ export default function () {
     },
   };
 
-  const res = http.post(url, payload, params);
+  const res = http.post(url,payload,params);
 
   check(res, {
     "Status is 200": (r) => r.status === 200,
@@ -55,7 +55,7 @@ export default function () {
 export function handleSummary(data) {
   return {
     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-    "CheckBirthDateReport.json": JSON.stringify(data), //the default data object
+    "ConfirmPasswordReport.json": JSON.stringify(data), //the default data object
   };
 }
   //sleep(1);
