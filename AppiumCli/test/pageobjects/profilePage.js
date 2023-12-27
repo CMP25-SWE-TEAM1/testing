@@ -56,17 +56,17 @@ class ProfilePage {
   }
   get firstTweet() {
     return $(
-      `//android.widget.ScrollView/android.view.View[15]/android.view.View/android.view.View/android.widget.Button[@index="0"]`
+      `//android.widget.ScrollView/android.view.View[10]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
     );
   }
   get firstTweetOptions() {
     return $(
-      `//android.widget.ScrollView/android.view.View[15]/android.view.View/android.view.View/android.widget.Button[@index="0"]//android.widget.Button[1]`
+      `//android.widget.ScrollView/android.view.View[10]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]/android.widget.Button[1]`
     );
   }
   get deletePostButton() {
     return $(
-      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button`
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button`
     );
   }
   get profileOptionsButton() {

@@ -11,6 +11,11 @@ class HomePage {
       `//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]`
     );
   }
+  get DMButton() {
+    return $(
+      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[5]'
+    );
+  }
   get searchButton() {
     return $(
       `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[3]`
@@ -95,23 +100,17 @@ class HomePage {
     switch (index) {
       case 1:
         selector =
-          '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]';
+          '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]';
         break;
       case 2:
         selector =
-          '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.Button[4]';
+          '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[4]';
         break;
       default:
         throw new Error(`Invalid index: ${index}`);
     }
 
     return $(selector);
-  }
-
-  get firstTimePost() {
-    return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.Button'
-    );
   }
 
   getTab(tabType) {

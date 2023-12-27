@@ -4,12 +4,6 @@ const { $, $$ } = require("@wdio/globals");
  * sub page containing specific selectors and methods for a specific page
  */
 class DMPage {
-  get DMButton() {
-    return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[5]'
-    );
-  }
-
   get firstChat() {
     return $(
       '//android.widget.ScrollView/android.view.View/android.widget.ImageView[@index="0"]'
@@ -24,13 +18,13 @@ class DMPage {
 
   get message() {
     return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[@index="5"]'
+      "//android.widget.ScrollView/android.view.View[7]/android.view.View"
     );
   }
 
   get postMessageButton() {
     return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.Button[2]'
+      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.Button[2]'
     );
   }
 }
