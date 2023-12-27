@@ -2,39 +2,20 @@ const User = require("../../fixtures/data.json");
 const LoginPage = require("../pageobjects/loginPage");
 const HomePage = require("../pageobjects/homePage");
 const TweetPage = require("../pageobjects/tweetPage");
+const LoginFacade = require("../utilis/LoginFacade");
+const SearchFacad = require("../utilis/SearchFacad");
 const expect = require("chai").expect;
-
 describe("Search and Trends", () => {
   beforeEach(async () => {
-    const loginButton = await LoginPage.loginButton;
-    await loginButton.click();
-    await driver.pause(1000);
-    await (await LoginPage.userNameField).click();
-    await (await LoginPage.userNameField).clearValue();
-    await (await LoginPage.userNameField).addValue(User.validUsername);
-    await (await LoginPage.nextButton).click();
-    await (await LoginPage.userNameView).getText();
-    await (await LoginPage.userPasswordField).click();
-    await (await LoginPage.userPasswordField).clearValue();
-    await (await LoginPage.userPasswordField).addValue(User.validPassword);
-    await (await LoginPage.showPasswordButton).click();
-    await (await LoginPage.loginButton).click();
-    await driver.pause(2000);
+    await LoginFacade.performLogin(User.validUsername, User.validPassword);
   });
   afterEach(async () => {
     await driver.reloadSession();
   });
 
   it("search for user", async () => {
-    const searchButton = await HomePage.searchButton;
-    await searchButton.click();
-    let searchForm = await HomePage.getSearchForm(1);
-    await searchForm.click();
+    await SearchFacad.search("Youssef");
 
-    await (await HomePage.getSearchForm(2)).click();
-    await (await HomePage.getSearchForm(2)).addValue("Youssef");
-    await driver.execute("mobile: performEditorAction", { action: "search" });
-    await driver.pause(1000);
     const peopleTab = await HomePage.peopleTab;
     await peopleTab.click();
     await driver.pause(2000);
@@ -46,16 +27,7 @@ describe("Search and Trends", () => {
   });
 
   it("search for tweet", async () => {
-    const searchButton = await HomePage.searchButton;
-    await searchButton.click();
-    let searchForm = await HomePage.getSearchForm(1);
-    await searchForm.click();
-
-    await (await HomePage.getSearchForm(2)).click();
-    await (await HomePage.getSearchForm(2)).addValue("gg");
-    await driver.execute("mobile: performEditorAction", { action: "search" });
-
-    await driver.pause(1000);
+    await SearchFacad.search("gg");
 
     const peopleTab = await HomePage.topTab;
     await peopleTab.click();
@@ -70,16 +42,7 @@ describe("Search and Trends", () => {
     await driver.pause(2000);
   });
   it("search for hashtag", async () => {
-    const searchButton = await HomePage.searchButton;
-    await searchButton.click();
-    let searchForm = await HomePage.getSearchForm(1);
-    await searchForm.click();
-
-    await (await HomePage.getSearchForm(2)).click();
-    await (await HomePage.getSearchForm(2)).addValue("#Egypt");
-    await driver.execute("mobile: performEditorAction", { action: "search" });
-
-    await driver.pause(3000);
+    await SearchFacad.search("#MAN");
 
     const peopleTab = await HomePage.topTab;
     await peopleTab.click();
@@ -91,7 +54,7 @@ describe("Search and Trends", () => {
     let flag = false;
     for (const element of tweetHashtags) {
       let hashtag = await element.getAttribute("content-desc");
-      if (hashtag.includes("#Egypt")) {
+      if (hashtag.includes("#MAN")) {
         flag = true;
         break;
       }
@@ -102,17 +65,8 @@ describe("Search and Trends", () => {
     await driver.pause(2000);
   });
 
-  it.only("click on hashtags", async () => {
-    const searchButton = await HomePage.searchButton;
-    await searchButton.click();
-    let searchForm = await HomePage.getSearchForm(1);
-    await searchForm.click();
-
-    await (await HomePage.getSearchForm(2)).click();
-    await (await HomePage.getSearchForm(2)).addValue("#Egypt");
-    await driver.execute("mobile: performEditorAction", { action: "search" });
-
-    await driver.pause(3000);
+  it("click on hashtags", async () => {
+    await SearchFacad.search("#MAN");
 
     const peopleTab = await HomePage.topTab;
     await peopleTab.click();

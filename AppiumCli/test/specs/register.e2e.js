@@ -17,7 +17,6 @@ describe("My Sign up with new account", () => {
 
   afterEach(async () => {
     await driver.reloadSession();
-    //await driver.resetApp();
   });
   it("Sign up with invalid User age", async () => {
     await (await RegisterPage.getFormWithIndex(0)).click();

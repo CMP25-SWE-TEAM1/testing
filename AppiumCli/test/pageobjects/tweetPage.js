@@ -6,6 +6,11 @@ class TweetPage {
       `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.Button/android.view.View[1]`
     );
   }
+  get userInformationImage() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.Button/android.view.View[1]`
+    );
+  }
   get retweetNumber() {
     return $(`//android.widget.Button[@index="0"]/android.widget.Button[2]`);
   }

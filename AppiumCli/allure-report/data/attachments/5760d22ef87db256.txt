@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "(//android.widget.ImageView[@resource-id=\"com.google.android.providers.media.module:id/icon_thumbnail\"])[2]"
+}

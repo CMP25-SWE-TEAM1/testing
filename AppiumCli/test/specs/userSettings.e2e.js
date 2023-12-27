@@ -1,9 +1,8 @@
 const User = require("../../fixtures/data.json");
 const LoginPage = require("../pageobjects/loginPage");
 const HomePage = require("../pageobjects/homePage");
-const SettingsPage = require("../pageobjects/settingsPage");
 const LoginFacade = require("../utilis/LoginFacade");
-const settingsPage = require("../pageobjects/settingsPage");
+const SettingsPage = require("../pageobjects/settingsPage");
 const expect = require("chai").expect;
 
 describe("User Settings", () => {
@@ -38,13 +37,13 @@ describe("User Settings", () => {
   });
 
   it("unblock users", async () => {
-    const pravicyAndSafty = await settingsPage.pravicyAndSafty;
+    const pravicyAndSafty = await SettingsPage.pravicyAndSafty;
     await pravicyAndSafty.click();
-    const muteAndBlock = await settingsPage.muteAndBlock;
+    const muteAndBlock = await SettingsPage.muteAndBlock;
     await muteAndBlock.click();
-    const blockedAccounts = await settingsPage.blockedAccounts;
+    const blockedAccounts = await SettingsPage.blockedAccounts;
     await blockedAccounts.click();
-    const blockedButtons = await settingsPage.blockedButtons;
+    const blockedButtons = await SettingsPage.blockedButtons;
     await driver.pause(2000);
     let flag = true;
     for (const button of blockedButtons) {
@@ -56,13 +55,13 @@ describe("User Settings", () => {
     expect(flag).to.be.true;
   });
   it("unmute users", async () => {
-    const pravicyAndSafty = await settingsPage.pravicyAndSafty;
+    const pravicyAndSafty = await SettingsPage.pravicyAndSafty;
     await pravicyAndSafty.click();
-    const muteAndBlock = await settingsPage.muteAndBlock;
+    const muteAndBlock = await SettingsPage.muteAndBlock;
     await muteAndBlock.click();
-    const mutedAccounts = await settingsPage.mutedAccounts;
+    const mutedAccounts = await SettingsPage.mutedAccounts;
     await mutedAccounts.click();
-    const mutedButtons = await settingsPage.mutedButtons;
+    const mutedButtons = await SettingsPage.mutedButtons;
     await driver.pause(2000);
 
     let flag = true;

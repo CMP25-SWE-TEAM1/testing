@@ -1,4 +1,4 @@
-const LoginPage = require("../pageobjects/loginPage"); // Adjust the path as needed
+const LoginPage = require("../pageobjects/loginPage"); 
 const HomePage = require("../pageobjects/homePage");
 class LoginFacade {
   static async performLogin(username, password) {
@@ -16,7 +16,7 @@ class LoginFacade {
     await (await LoginPage.userPasswordField).addValue(password);
     await (await LoginPage.showPasswordButton).click();
     await (await LoginPage.loginButton).click();
-    await driver.pause(2000);
+    await driver.pause(1000);
 
     const allowNotificationButton = await HomePage.allowNotificationButton;
     await allowNotificationButton.click();
