@@ -1,45 +1,48 @@
-import http from 'k6/http';
-import { sleep } from 'k6';
-import { check } from 'k6';
+import encoding from "k6/encoding";
+import http from "k6/http";
 import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
-//  export const options={
-//      vus: 1,
-//      duration:'15s',
-//  }
+import { check, sleep, group } from "k6";
+// export const options={
+//     vus: 10,
+//     duration:'10s',
+// }
 export const options = {
   scenarios: {
     shared_iter_scenario: {
       executor: "shared-iterations",
       vus: 10,
-      iterations: 1000,
+      iterations: 100,
       startTime: "0s",
     },
     per_vu_scenario: {
       executor: "per-vu-iterations",
-      vus: 10,
-      iterations: 10,
+      vus: 10000,
+      iterations: 1,
       startTime: "10s",
     },
   },
 };
+
  const userEmail = "mahmoud.khattab13@gmail.com";
  const userPassword = "deaddead";
 
-export default function getToken() {
-  const url = 'http://backend.gigachat.cloudns.org/api/trends/Palestine?page=1&count=1';
+export default function () {
+  group("Verify specific trend", function(){
+    const url = 'http://backend.gigachat.cloudns.org/api/trends/cairo?page=1&count=20';
+  
   const payload = JSON.stringify({
-    page: 3,
-    count: 3
+    page: 2,
+    count: 2
   });
 
   const params = {
     headers: {
       "Content-Type": "application/json",
-      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTBkMmY5ZjkwODhlODgzMThmZDEwYyIsImlhdCI6MTcwMTEwMzI2NywiZXhwIjoxNzA4ODc5MjY3fQ.Il_1vL2PbOE36g0wW55Lh1M7frJWx73gNIZ0uDuP5yw"
+      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2I2MzA3ZjFlYTNiNmM4MGQ4N2JkNSIsImlhdCI6MTcwMzQxODA5MywiZXhwIjoxNzExMTk0MDkzfQ.4cXrOyu8ZHkKVsWzoT3ET13bMJ5cPUakLZY0zj4E740",
     },
-  };
+  };  
 
-  const res = http.get(url, params);
+  const res = http.get(url,params);
 
   check(res, {
     "Status is 200": (r) => r.status === 200,
@@ -47,8 +50,9 @@ export default function getToken() {
   });
   //const token = JSON.parse(res.body).token;
   console.log(res.status);
-  console.log(res.body);
+ // console.log(res.body);
   sleep(1);
+  });
 
  // return token;
 }
