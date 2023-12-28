@@ -1,0 +1,239 @@
+{
+    "metrics": {
+        "http_req_waiting": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "med": 0,
+                "max": 59059.3954,
+                "p(90)": 48049.10717000001,
+                "p(95)": 50759.346115,
+                "avg": 7693.044175320001,
+                "min": 0
+            }
+        },
+        "data_sent": {
+            "type": "counter",
+            "contains": "data",
+            "values": {
+                "count": 797759,
+                "rate": 13232.036034759205
+            }
+        },
+        "http_req_tls_handshaking": {
+            "values": {
+                "max": 5778.4497,
+                "p(90)": 1630.63805,
+                "p(95)": 2347.51263,
+                "avg": 340.28881422000023,
+                "min": 0,
+                "med": 0
+            },
+            "type": "trend",
+            "contains": "time"
+        },
+        "iterations": {
+            "type": "counter",
+            "contains": "default",
+            "values": {
+                "count": 5000,
+                "rate": 82.93253999490575
+            }
+        },
+        "http_req_connecting": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "max": 15361.5859,
+                "p(90)": 431.195,
+                "p(95)": 2799.359,
+                "avg": 679.5470772400014,
+                "min": 0,
+                "med": 0
+            }
+        },
+        "http_req_receiving": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "avg": 0.01993702,
+                "min": 0,
+                "med": 0,
+                "max": 1.144,
+                "p(90)": 0,
+                "p(95)": 0
+            }
+        },
+        "data_received": {
+            "type": "counter",
+            "contains": "data",
+            "values": {
+                "count": 12389443,
+                "rate": 205497.59542242103
+            }
+        },
+        "http_req_blocked": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "max": 15572.8758,
+                "p(90)": 2335.6741200000024,
+                "p(95)": 3240.4430500000003,
+                "avg": 697.5720303399997,
+                "min": 0,
+                "med": 0
+            }
+        },
+        "group_duration": {
+            "contains": "time",
+            "values": {
+                "avg": 22572.17871728002,
+                "min": 3213.3288,
+                "med": 18322.7485,
+                "max": 60147.9796,
+                "p(90)": 53616.84054000001,
+                "p(95)": 55474.12107
+            },
+            "type": "trend"
+        },
+        "http_reqs": {
+            "type": "counter",
+            "contains": "default",
+            "values": {
+                "count": 5000,
+                "rate": 82.93253999490575
+            }
+        },
+        "http_req_duration": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "min": 0,
+                "med": 0,
+                "max": 59059.3954,
+                "p(90)": 48049.60145000002,
+                "p(95)": 50759.875485,
+                "avg": 7693.070292380004
+            }
+        },
+        "checks": {
+            "contains": "default",
+            "values": {
+                "rate": 0.0603,
+                "passes": 603,
+                "fails": 9397
+            },
+            "type": "rate"
+        },
+        "vus_max": {
+            "type": "gauge",
+            "contains": "default",
+            "values": {
+                "value": 5000,
+                "min": 5000,
+                "max": 5000
+            }
+        },
+        "vus": {
+            "type": "gauge",
+            "contains": "default",
+            "values": {
+                "min": 244,
+                "max": 5000,
+                "value": 244
+            }
+        },
+        "http_req_sending": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "p(90)": 0,
+                "p(95)": 0,
+                "avg": 0.006180040000000002,
+                "min": 0,
+                "med": 0,
+                "max": 0.5745
+            }
+        },
+        "iteration_duration": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "med": 18322.7485,
+                "max": 60147.9796,
+                "p(90)": 53616.84054000001,
+                "p(95)": 55474.12107,
+                "avg": 22572.24353206002,
+                "min": 3213.3288
+            }
+        },
+        "http_req_duration{expected_response:true}": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "avg": 41813.76041973467,
+                "min": 4020.6145,
+                "med": 47414.4592,
+                "max": 51168.79,
+                "p(90)": 50574.538700000005,
+                "p(95)": 50690.30446
+            }
+        },
+        "http_req_failed": {
+            "type": "rate",
+            "contains": "default",
+            "values": {
+                "rate": 0.8794,
+                "passes": 4397,
+                "fails": 603
+            }
+        }
+    },
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": [
+            {
+                "path": "::Tweet Search With Word.",
+                "id": "68f9e74fbf340417039f43ba239299bd",
+                "groups": [],
+                "checks": [
+                    {
+                        "name": "Status is 200",
+                        "path": "::Tweet Search With Word.::Status is 200",
+                        "id": "fef6e8fd61268bfe6b1cc9ef856c3578",
+                        "passes": 603,
+                        "fails": 4397
+                    },
+                    {
+                        "name": "Tweet body is not empty",
+                        "path": "::Tweet Search With Word.::Tweet body is not empty",
+                        "id": "ca8bc5a3de471bec7b9a3731295cdc2c",
+                        "passes": 0,
+                        "fails": 5000
+                    }
+                ],
+                "name": "Tweet Search With Word."
+            }
+        ],
+        "checks": []
+    },
+    "options": {
+        "summaryTrendStats": [
+            "avg",
+            "min",
+            "med",
+            "max",
+            "p(90)",
+            "p(95)"
+        ],
+        "summaryTimeUnit": "",
+        "noColor": false
+    },
+    "state": {
+        "isStdOutTTY": true,
+        "isStdErrTTY": true,
+        "testRunDurationMs": 60289.9658
+    }
+}

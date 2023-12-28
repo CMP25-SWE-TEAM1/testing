@@ -10,8 +10,10 @@ export const options = optionsInstance.getOptions();
 
 export default function () {
   group("Get chat", function () {
-    const authToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQ2ZjA0NGUyOGRlYTYyMDY5M2I4MSIsImlhdCI6MTcwMjEyOTQ3MiwiZXhwIjoxNzA5OTA1NDcyfQ.hn1CqfcPfGvFZuDn7PBhNfIpjv_ObO2SfZre3v0Y6FQ`;
-    const url = `http://backend.gigachat.cloudns.org/api/user/chat/65746e864e28dea620693b2d`;
+    const authToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzcyZjFkNWEzY2ZiNTJkYWM2MzY4NSIsImlhdCI6MTcwMzY3MDg4NCwiZXhwIjoxNzExNDQ2ODg0fQ._YHFqFGPiS_3m1eYFTJLTNKCl5UNz5VVCca8YMFPATk";
+
+    const url = `https://backend.gigachat.cloudns.org/api/user/chat/65746e864e28dea620693b2d`;
 
     const params = {
       headers: {
@@ -34,7 +36,7 @@ export default function () {
 export function handleSummary(data) {
   return {
     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-    "getChatReport160VUs.json": JSON.stringify(data), //the default data object
+    "getChatReport.json": JSON.stringify(data), //the default data object
   };
 }
 //k6 run --vus 1 --duration 1m TweetStress.js

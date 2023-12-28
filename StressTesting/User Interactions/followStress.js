@@ -10,7 +10,8 @@ export const options = optionsInstance.getOptions();
 
 export default function () {
   group("Follow", function () {
-    const authToken = getToken();
+    const authToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzcyZjFkNWEzY2ZiNTJkYWM2MzY4NSIsImlhdCI6MTcwMzY3MDg4NCwiZXhwIjoxNzExNDQ2ODg0fQ._YHFqFGPiS_3m1eYFTJLTNKCl5UNz5VVCca8YMFPATk";
     const username = "karreeem1";
     const url = `http://backend.gigachat.cloudns.org/api/user/${username}/follow`;
 
@@ -37,7 +38,7 @@ export default function () {
 export function handleSummary(data) {
   return {
     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-    "followReport210VUs.json": JSON.stringify(data), //the default data object
+    "followReport.json": JSON.stringify(data), //the default data object
   };
 }
 //k6 run --vus 1 --duration 1m TweetStress.js

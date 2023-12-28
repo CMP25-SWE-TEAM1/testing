@@ -10,8 +10,10 @@ export const options = optionsInstance.getOptions();
 
 export default function () {
   group("Get Mute List", function () {
-    const authToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzcyZjFkNWEzY2ZiNTJkYWM2MzY4NSIsImlhdCI6MTcwMjY0OTIzMSwiZXhwIjoxNzEwNDI1MjMxfQ.8cNq8VIGDm0hYuUdH1S0fSY3HseGBuRj1XAufDXT9_I`;
-    const url = `http://backend.gigachat.cloudns.org/api/user/mutedList`;
+    const authToken =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzcyZjFkNWEzY2ZiNTJkYWM2MzY4NSIsImlhdCI6MTcwMzY3MDg4NCwiZXhwIjoxNzExNDQ2ODg0fQ._YHFqFGPiS_3m1eYFTJLTNKCl5UNz5VVCca8YMFPATk";
+
+    const url = `https://backend.gigachat.cloudns.org/api/user/mutedList`;
 
     const params = {
       headers: {
@@ -34,7 +36,7 @@ export default function () {
 export function handleSummary(data) {
   return {
     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-    "getMuteListReport110VUs.json": JSON.stringify(data), //the default data object
+    "getMuteListReport.json": JSON.stringify(data), //the default data object
   };
 }
 //k6 run --vus 1 --duration 1m TweetStress.js

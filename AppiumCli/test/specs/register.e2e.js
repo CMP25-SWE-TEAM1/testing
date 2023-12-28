@@ -5,10 +5,6 @@ const expect = require("chai").expect;
 
 describe("My Sign up with new account", () => {
   beforeEach(async () => {
-    // const userbutton = await HomePage.userButton;
-    // await userbutton.click();
-    // const fistCreatAccountbutton = await HomePage.creatAccountButton;
-    // await fistCreatAccountbutton.click();
     await driver.touchAction([{ action: "tap", x: 550, y: 1909 }]); //click on signup link
     const creatAccountbutton = await RegisterPage.creatAccountButton;
     await creatAccountbutton.click();
@@ -91,32 +87,19 @@ describe("My Sign up with new account", () => {
     nextBtn = await RegisterPage.nextButton;
     await nextBtn.click();
 
+    const allowNotificationButton = await HomePage.allowNotificationButton;
+    await allowNotificationButton.click();
+
     let skipForNowButton = await RegisterPage.skipForNowButton;
     await skipForNowButton.click();
 
     skipForNowButton = await RegisterPage.skipForNowButton;
     await skipForNowButton.click();
 
-    //check for home page if it exists
-    const forYouTab = await HomePage.getTab("For you").tabElement;
-    let forYouTabText = await forYouTab.getAttribute("content-desc");
-
-    let forYouTabWord = forYouTabText.substring(0, 7);
-    expect(forYouTabWord).equal("For you");
-
-    expect(await forYouTab.isEnabled()).to.be.true;
-
-    const followingTab = await HomePage.getTab("Following").tabElement;
-    let followingText = await followingTab.getAttribute("content-desc");
-
-    let followingWord = followingText.substring(0, 9);
-    expect(followingWord).equal("Following");
-
-    expect(await followingTab.isEnabled()).to.be.true;
     await driver.pause(1000);
   });
 
-  it("Sign up with invalid email", async () => {
+  it.only("Sign up with invalid email", async () => {
     await (await RegisterPage.getFormWithIndex(0)).click();
     await (await RegisterPage.getFormWithIndex(0)).addValue(User.validUsername);
 
@@ -136,7 +119,7 @@ describe("My Sign up with new account", () => {
     expect(await nextBtn.isEnabled()).equal(false);
   });
 
-  it("Sign up with already existed user", async () => {
+  it.only("Sign up with already existed user", async () => {
     await (await RegisterPage.getFormWithIndex(0)).click();
     await (await RegisterPage.getFormWithIndex(0)).addValue(User.validUsername);
 

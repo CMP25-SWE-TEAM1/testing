@@ -9,7 +9,7 @@ export const options = optionsInstance.getOptions();
 export default function () {
   group("Get Chat All", function () {
     const authToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQ2ZjA0NGUyOGRlYTYyMDY5M2I4MSIsImlhdCI6MTcwMjEyOTQ3MiwiZXhwIjoxNzA5OTA1NDcyfQ.hn1CqfcPfGvFZuDn7PBhNfIpjv_ObO2SfZre3v0Y6FQ`;
-    const url = `http://backend.gigachat.cloudns.org/api/user/chat/all`;
+    const url = `https://backend.gigachat.cloudns.org/api/user/chat/all`;
 
     const params = {
       headers: {
