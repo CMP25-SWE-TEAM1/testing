@@ -3,21 +3,10 @@ const LoginPage = require("../pageobjects/loginPage");
 const HomePage = require("../pageobjects/homePage");
 const TweetPage = require("../pageobjects/tweetPage");
 const expect = require("chai").expect;
-
+const LoginFacade = require("../utilis/LoginFacade");
 describe("Post Tweet", () => {
   beforeEach(async () => {
-    const loginButton = await LoginPage.loginButton;
-    await loginButton.click();
-    await (await LoginPage.userNameField).click();
-    await (await LoginPage.userNameField).clearValue();
-    await (await LoginPage.userNameField).addValue(User.validUsername);
-    await (await LoginPage.nextButton).click();
-    await (await LoginPage.userPasswordField).click();
-    await (await LoginPage.userPasswordField).clearValue();
-    await (await LoginPage.userPasswordField).addValue(User.validPassword);
-    await (await LoginPage.showPasswordButton).click();
-    await (await LoginPage.loginButton).click();
-    await driver.pause(1000);
+    await LoginFacade.performLogin(User.validUsername, User.validPassword);
   });
 
   afterEach(async () => {
@@ -31,7 +20,7 @@ describe("Post Tweet", () => {
     composePost = await HomePage.composePost(2);
     await composePost.click();
 
-    const firstTimePost = await HomePage.firstTimePost;
+    const firstTimePost = await TweetPage.firstTimePost;
     await firstTimePost.click();
 
     const tweetTextForm = await TweetPage.tweetTextForm;
@@ -49,7 +38,7 @@ describe("Post Tweet", () => {
     composePost = await HomePage.composePost(2);
     await composePost.click();
 
-    const firstTimePost = await HomePage.firstTimePost;
+    const firstTimePost = await TweetPage.firstTimePost;
     await firstTimePost.click();
 
     const tweetTextForm = await TweetPage.tweetTextForm;
@@ -67,7 +56,7 @@ describe("Post Tweet", () => {
     composePost = await HomePage.composePost(2);
     await composePost.click();
 
-    const firstTimePost = await HomePage.firstTimePost;
+    const firstTimePost = await TweetPage.firstTimePost;
     await firstTimePost.click();
 
     const addImageButton = await TweetPage.addImageButton;
@@ -96,7 +85,7 @@ describe("Post Tweet", () => {
     composePost = await HomePage.composePost(2);
     await composePost.click();
 
-    const firstTimePost = await HomePage.firstTimePost;
+    const firstTimePost = await TweetPage.firstTimePost;
     await firstTimePost.click();
 
     const tweetTextForm = await TweetPage.tweetTextForm;
@@ -127,7 +116,7 @@ describe("Post Tweet", () => {
     composePost = await HomePage.composePost(2);
     await composePost.click();
 
-    const firstTimePost = await HomePage.firstTimePost;
+    const firstTimePost = await TweetPage.firstTimePost;
     await firstTimePost.click();
 
     const addImageButton = await TweetPage.addImageButton;
@@ -148,14 +137,14 @@ describe("Post Tweet", () => {
 
     await driver.pause(4000);
   });
-  it.only("post a tweet with video with text", async () => {
+  it("post a tweet with video with text", async () => {
     let composePost = await HomePage.composePost(1);
     await composePost.click();
 
     composePost = await HomePage.composePost(2);
     await composePost.click();
 
-    const firstTimePost = await HomePage.firstTimePost;
+    const firstTimePost = await TweetPage.firstTimePost;
     await firstTimePost.click();
 
     const tweetTextForm = await TweetPage.tweetTextForm;

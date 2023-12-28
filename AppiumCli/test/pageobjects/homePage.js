@@ -6,35 +6,68 @@ class HomePage {
   constructor() {
     this.tabFactory = new TabFactory();
   }
-  get searchButton() {
+  get allowNotificationButton() {
     return $(
-      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[3]`
+      `//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]`
     );
   }
-  async getSearchForm(index) {
-    if (index == 1)
-      return $(
-        `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View[1]`
-      );
-    else
-      return $(
-        `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.EditText`
-      );
+  get DMButton() {
+    return $(
+      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[5]'
+    );
+  }
+  get searchButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[3]`
+    );
+  }
+  get notificationButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[4]`
+    );
+  }
+  get allNotifications() {
+    return $$(
+      `//android.widget.ScrollView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View`
+    );
+  }
+
+  get searchForm() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText`
+    );
   }
 
   get peopleTab() {
     return $(
-      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[2]`
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[2]`
+    );
+  }
+
+  get topTab() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1]`
     );
   }
   get firstUserInSearch() {
     return $(
-      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
+    );
+  }
+  get firstTweetInSearch() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.widget.ScrollView/android.widget.Button[1]`
+    );
+  }
+
+  get firstTweetHashtagsInSearch() {
+    return $$(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]/android.view.View[2]/android.widget.Button[1]`
     );
   }
   get userButton() {
     return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button'
+      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button'
     );
   }
   get creatAccountButton() {
@@ -47,9 +80,17 @@ class HomePage {
     return $('//android.view.View[@content-desc="Profile"]');
   }
 
+  get settingAndSupportTab() {
+    return $('//android.view.View[@content-desc="Settings & Support"]');
+  }
+
+  get settingAndPrivacyTab() {
+    return $('//android.view.View[@content-desc="Settings and privacy"]');
+  }
+
   get firstTweet() {
     return $(
-      `//android.widget.ScrollView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
+      `//android.widget.ScrollView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button`
     );
   }
 
@@ -59,23 +100,17 @@ class HomePage {
     switch (index) {
       case 1:
         selector =
-          '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]';
+          '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[1]';
         break;
       case 2:
         selector =
-          '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.Button[4]';
+          '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[4]';
         break;
       default:
         throw new Error(`Invalid index: ${index}`);
     }
 
     return $(selector);
-  }
-
-  get firstTimePost() {
-    return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.widget.Button'
-    );
   }
 
   getTab(tabType) {
@@ -85,13 +120,9 @@ class HomePage {
 class TabFactory {
   createTab(tabType) {
     switch (tabType) {
-      case "For you":
-        return new Tab(
-          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[1]`
-        );
       case "Following":
         return new Tab(
-          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[2]`
+          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View[1]`
         );
       default:
         throw new Error(`Invalid tab type: ${tabType}`);

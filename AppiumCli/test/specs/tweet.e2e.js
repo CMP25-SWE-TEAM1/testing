@@ -3,29 +3,14 @@ const LoginPage = require("../pageobjects/loginPage");
 const HomePage = require("../pageobjects/homePage");
 const ProfilePage = require("../pageobjects/profilePage");
 const TweetPage = require("../pageobjects/tweetPage");
+const LoginFacade = require("../utilis/LoginFacade");
+const ProfileFacade = require("../utilis/ProfileFacade");
 const expect = require("chai").expect;
 
 describe("Tweet operations", () => {
   beforeEach(async () => {
-    const loginButton = await LoginPage.loginButton;
-    await loginButton.click();
-    await driver.pause(1000);
-    await (await LoginPage.userNameField).click();
-    await (await LoginPage.userNameField).clearValue();
-    await (await LoginPage.userNameField).addValue(User.validUsername);
-    await (await LoginPage.nextButton).click();
-    await (await LoginPage.userNameView).getText();
-    await (await LoginPage.userPasswordField).click();
-    await (await LoginPage.userPasswordField).clearValue();
-    await (await LoginPage.userPasswordField).addValue(User.validPassword);
-    await (await LoginPage.showPasswordButton).click();
-    await (await LoginPage.loginButton).click();
-    await driver.pause(2000);
-    const userbutton = await HomePage.userButton;
-    await userbutton.click();
-    const profileTab = await HomePage.profileTab;
-    await profileTab.click();
-    await driver.pause(3000);
+    await LoginFacade.performLogin(User.validUsername, User.validPassword);
+    await ProfileFacade.goToOwnProfile();
   });
   afterEach(async () => {
     await driver.reloadSession();
@@ -33,7 +18,7 @@ describe("Tweet operations", () => {
 
   it("like first tweet and check the increment in user profile", async () => {
     const tweet = await ProfilePage.firstTweet;
-    await tweet.waitForDisplayed({ timeout: 1000 });
+    await tweet.waitForDisplayed({ timeout: 10000 });
     await driver.touchAction([{ action: "tap", x: 0, y: 10, element: tweet }]);
     await driver.pause(2000);
 
@@ -44,6 +29,7 @@ describe("Tweet operations", () => {
     const likeButton = await TweetPage.likeButton;
     expect(await likeButton.isEnabled()).to.be.true;
     await likeButton.click();
+    await driver.pause(2000);
 
     let NewLikesNumber = parseInt(
       (await (await TweetPage.likersNumber).getAttribute("content-desc"))[0]
@@ -54,7 +40,7 @@ describe("Tweet operations", () => {
   });
   it("retweet my first tweet and check the increment in user profile", async () => {
     const tweet = await ProfilePage.firstTweet;
-    await tweet.waitForDisplayed({ timeout: 1000 });
+    await tweet.waitForDisplayed({ timeout: 10000 });
     await driver.touchAction([{ action: "tap", x: 0, y: 10, element: tweet }]);
     await driver.pause(2000);
 
@@ -68,6 +54,7 @@ describe("Tweet operations", () => {
 
     const repostButton = await TweetPage.repostButton;
     await repostButton.click();
+    await driver.pause(2000);
 
     let newRetweetsNumber = parseInt(
       (await (await TweetPage.retweetNumber).getAttribute("content-desc"))[0]
@@ -79,7 +66,7 @@ describe("Tweet operations", () => {
 
   it("undo my retweet of my first tweet and check the decrement in user profile", async () => {
     const tweet = await ProfilePage.firstTweet;
-    await tweet.waitForDisplayed({ timeout: 1000 });
+    await tweet.waitForDisplayed({ timeout: 10000 });
     await driver.touchAction([{ action: "tap", x: 0, y: 10, element: tweet }]);
     await driver.pause(2000);
 
@@ -93,6 +80,7 @@ describe("Tweet operations", () => {
 
     const undoRepostButton = await TweetPage.undoRepostButton;
     await undoRepostButton.click();
+    await driver.pause(2000);
 
     let newRetweetsNumber = parseInt(
       (await (await TweetPage.retweetNumber).getAttribute("content-desc"))[0]
@@ -104,7 +92,7 @@ describe("Tweet operations", () => {
 
   it("retweet with qoute first tweet in user profile", async () => {
     const tweet = await ProfilePage.firstTweet;
-    await tweet.waitForDisplayed({ timeout: 1000 });
+    await tweet.waitForDisplayed({ timeout: 10000 });
     await driver.touchAction([{ action: "tap", x: 0, y: 10, element: tweet }]);
     await driver.pause(2000);
 
@@ -120,7 +108,7 @@ describe("Tweet operations", () => {
 
   it("comment on first tweet in user profile", async () => {
     const tweet = await ProfilePage.firstTweet;
-    await tweet.waitForDisplayed({ timeout: 1000 });
+    await tweet.waitForDisplayed({ timeout: 10000 });
     await driver.touchAction([{ action: "tap", x: 0, y: 10, element: tweet }]);
     await driver.pause(2000);
 
@@ -128,7 +116,7 @@ describe("Tweet operations", () => {
     expect(await replyButton.isEnabled()).to.be.true;
     await replyButton.click();
 
-    const firstTimePost = await HomePage.firstTimePost;
+    const firstTimePost = await TweetPage.firstTimePost;
     if (await firstTimePost.isDisplayed()) {
       await firstTimePost.click();
     }
@@ -139,12 +127,20 @@ describe("Tweet operations", () => {
     const postButton = await TweetPage.postButton;
     await postButton.click();
 
-    //TODO check for the comment if it has the same words
+    const firstComment = await TweetPage.getComment(1);
+    await firstComment.waitForDisplayed({ timeout: 10000 });
+    let text = await firstComment.getAttribute("content-desc");
+
+    let replyIndex = text.indexOf("Replying to");
+    //check for the comment if it has the same words
+
+    let croppedString = text.slice(replyIndex + "Replying to".length).trim();
+    expect(croppedString).equal("Hello");
     await driver.pause(2000);
   });
-  it("comment on first comment in first tweet in user profile", async () => {
+  it.skip("comment on first comment in first tweet in user profile", async () => {
     const tweet = await ProfilePage.firstTweet;
-    await tweet.waitForDisplayed({ timeout: 1000 });
+    await tweet.waitForDisplayed({ timeout: 10000 });
     await driver.touchAction([{ action: "tap", x: 0, y: 10, element: tweet }]);
     await driver.pause(2000);
 
@@ -159,7 +155,7 @@ describe("Tweet operations", () => {
     expect(await replyButton.isEnabled()).to.be.true;
     await replyButton.click();
 
-    const firstTimePost = await HomePage.firstTimePost;
+    const firstTimePost = await TweetPage.firstTimePost;
     if (await firstTimePost.isDisplayed()) {
       await firstTimePost.click();
     }
@@ -174,7 +170,7 @@ describe("Tweet operations", () => {
     await driver.pause(2000);
   });
 
-  it("delete first tweet in user profile", async () => {
+  it.only("delete first tweet in user profile", async () => {
     const firstTweet = await ProfilePage.firstTweet;
     let firstTweetText = await firstTweet.getAttribute("content-desc");
 

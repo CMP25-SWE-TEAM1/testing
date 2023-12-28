@@ -58,8 +58,7 @@ exports.config = {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
       "appium:deviceName": "pixel_3a",
-      "appium:app":
-        "C:/Users/HIMA/Cross-platform/build/app/outputs/flutter-apk/app-debug.apk",
+      "appium:app": "C:/Users/HIMA/Downloads/Gigachat_arm64-v8a.apk",
       "appium:automationName": "UIAutomator2",
     },
   ],

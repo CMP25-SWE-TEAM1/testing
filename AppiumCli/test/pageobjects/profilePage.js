@@ -4,18 +4,34 @@ class ProfilePage {
   constructor() {
     this.tabFactory = new TabFactory();
   }
+  get followersButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.ScrollView/android.view.View[9]`
+    );
+  }
+  get followingButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.ScrollView/android.view.View[8]`
+    );
+  }
+  get allUsers() {
+    return $$(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.Button`
+    );
+  }
+
   get editProfileButton() {
     return $('//android.widget.Button[@content-desc="Edit profile"]');
   }
   get bannerImage() {
-    return $("//android.widget.ScrollView/android.view.View[2]");
+    return $("//android.widget.ScrollView/android.widget.ImageView");
   }
   get userImage() {
     return $("//android.widget.ScrollView/android.view.View[1]");
   }
   get chooseExistingPhotoButton() {
     return $(
-      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.widget.Button[2]'
+      '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.widget.Button[2]'
     );
   }
 
@@ -40,28 +56,36 @@ class ProfilePage {
   }
   get firstTweet() {
     return $(
-      `//android.widget.ScrollView/android.view.View[15]/android.view.View/android.view.View/android.widget.Button[@index="0"]`
+      `//android.widget.ScrollView/android.view.View[10]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]`
     );
   }
   get firstTweetOptions() {
     return $(
-      `//android.widget.ScrollView/android.view.View[15]/android.view.View/android.view.View/android.widget.Button[@index="0"]//android.widget.Button[1]`
+      `//android.widget.ScrollView/android.view.View[10]/android.view.View/android.view.View/android.view.View/android.widget.Button[1]/android.widget.Button[1]`
     );
   }
   get deletePostButton() {
     return $(
-      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button`
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button`
     );
   }
   get profileOptionsButton() {
     return $(
-      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.Button[3]`
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[1]/android.view.View[1]/android.widget.Button[3]`
     );
   }
   get blockButton() {
     return $(
-      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.widget.Button[2]`
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.widget.Button[2]`
     );
+  }
+  get confirmBlockButton() {
+    return $(
+      `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.widget.Button[2]`
+    );
+  }
+  get blockedButton() {
+    return $(`//android.widget.Button[@content-desc="Blocked"]`);
   }
   getTab(tabType) {
     return this.tabFactory.createTab(tabType);
@@ -82,13 +106,13 @@ class TabFactory {
   createTab(tabType) {
     switch (tabType) {
       case "Posts":
-        return new Tab(`//android.widget.ScrollView/android.view.View[11]`);
-      case "Replies":
-        return new Tab(`//android.widget.ScrollView/android.view.View[12]`);
-      case "Media":
-        return new Tab(`//android.widget.ScrollView/android.view.View[13]`);
+        return new Tab(
+          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]`
+        );
       case "Likes":
-        return new Tab(`//android.widget.ScrollView/android.view.View[14]`);
+        return new Tab(
+          `//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[3]`
+        );
       default:
         throw new Error(`Invalid tab type: ${tabType}`);
     }

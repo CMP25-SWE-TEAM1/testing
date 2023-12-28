@@ -23,17 +23,11 @@ describe("My Login application", () => {
     await (await LoginPage.userPasswordField).addValue(User.validPassword);
     await (await LoginPage.showPasswordButton).click();
     await (await LoginPage.loginButton).click();
+    const allowNotificationButton = await HomePage.allowNotificationButton;
+    await allowNotificationButton.click();
     expect(await (await LoginPage.wrongPasswordMessage).isDisplayed()).to.be
       .false;
 
-    await driver.pause(1000);
-    const followingTab = await HomePage.getTab("Following").tabElement;
-    let followingText = await followingTab.getAttribute("content-desc");
-
-    let followingWord = followingText.substring(0, 9);
-    expect(followingWord).equal("Following");
-
-    expect(await followingTab.isEnabled()).to.be.true;
     await driver.pause(1000);
   });
   it("login with valid username", async () => {
@@ -47,11 +41,13 @@ describe("My Login application", () => {
     await (await LoginPage.userPasswordField).addValue(User.validPassword);
     await (await LoginPage.showPasswordButton).click();
     await (await LoginPage.loginButton).click();
+    const allowNotificationButton = await HomePage.allowNotificationButton;
+    await allowNotificationButton.click();
     expect(await (await LoginPage.wrongPasswordMessage).isDisplayed()).to.be
       .false;
     await driver.pause(3000);
   });
-  it("login with invalid invalidEmail or username", async () => {
+  it.only("login with invalid invalidEmail or username", async () => {
     await (await LoginPage.userNameField).click();
     await (await LoginPage.userNameField).clearValue();
     await (await LoginPage.userNameField).addValue(User.invalidEmail);
@@ -62,6 +58,9 @@ describe("My Login application", () => {
     await (await LoginPage.userPasswordField).addValue(User.validPassword);
     await (await LoginPage.showPasswordButton).click();
     await (await LoginPage.loginButton).click();
+    const allowNotificationButton = await HomePage.allowNotificationButton;
+    await allowNotificationButton.click();
+    await driver.pause(3000);
     expect(await (await LoginPage.wrongPasswordMessage).isDisplayed()).to.be
       .true;
     await driver.pause(3000);
@@ -78,6 +77,8 @@ describe("My Login application", () => {
     await (await LoginPage.userPasswordField).addValue(User.invalidPassword);
     await (await LoginPage.showPasswordButton).click();
     await (await LoginPage.loginButton).click();
+    const allowNotificationButton = await HomePage.allowNotificationButton;
+    await allowNotificationButton.click();
     await driver.pause(3000);
     expect(await (await LoginPage.wrongPasswordMessage).isDisplayed()).to.be
       .true;

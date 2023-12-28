@@ -1,0 +1,232 @@
+{
+    "state": {
+        "isStdOutTTY": true,
+        "isStdErrTTY": true,
+        "testRunDurationMs": 61130.5906
+    },
+    "metrics": {
+        "http_req_tls_handshaking": {
+            "contains": "time",
+            "values": {
+                "p(90)": 1097.2750300000005,
+                "p(95)": 2064.9323150000005,
+                "avg": 285.44555785999995,
+                "min": 0,
+                "med": 0,
+                "max": 5461.9838
+            },
+            "type": "trend"
+        },
+        "http_req_waiting": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "min": 0,
+                "med": 0,
+                "max": 58493.4597,
+                "p(90)": 23079.60571,
+                "p(95)": 23989.98956,
+                "avg": 3494.850120240003
+            }
+        },
+        "vus": {
+            "type": "gauge",
+            "contains": "default",
+            "values": {
+                "value": 11,
+                "min": 11,
+                "max": 5000
+            }
+        },
+        "http_req_failed": {
+            "type": "rate",
+            "contains": "default",
+            "values": {
+                "rate": 0.9914,
+                "passes": 4957,
+                "fails": 43
+            }
+        },
+        "iterations": {
+            "type": "counter",
+            "contains": "default",
+            "values": {
+                "count": 5000,
+                "rate": 81.79211015180344
+            }
+        },
+        "http_reqs": {
+            "type": "counter",
+            "contains": "default",
+            "values": {
+                "count": 5000,
+                "rate": 81.79211015180344
+            }
+        },
+        "http_req_connecting": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "p(95)": 2823.3676,
+                "avg": 824.8937426399996,
+                "min": 0,
+                "med": 0,
+                "max": 15519.0425,
+                "p(90)": 459.7053
+            }
+        },
+        "vus_max": {
+            "contains": "default",
+            "values": {
+                "value": 5000,
+                "min": 5000,
+                "max": 5000
+            },
+            "type": "gauge"
+        },
+        "http_req_blocked": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "min": 0,
+                "med": 0,
+                "max": 15691.2449,
+                "p(90)": 1692.4167400000013,
+                "p(95)": 3009.54607,
+                "avg": 570.5282157200002
+            }
+        },
+        "http_req_receiving": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "med": 0,
+                "max": 1.0713,
+                "p(90)": 0,
+                "p(95)": 0,
+                "avg": 0.014037780000000001,
+                "min": 0
+            }
+        },
+        "http_req_duration": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "p(90)": 23080.094370000003,
+                "p(95)": 23989.99037,
+                "avg": 3494.868804540002,
+                "min": 0,
+                "med": 0,
+                "max": 58493.4597
+            }
+        },
+        "group_duration": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "max": 61029.3375,
+                "p(90)": 26103.6376,
+                "p(95)": 28282.94877,
+                "avg": 19713.360904160007,
+                "min": 4867.5135,
+                "med": 19466.5142
+            }
+        },
+        "http_req_duration{expected_response:true}": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "avg": 26589.519967441858,
+                "min": 25426.5756,
+                "med": 27456.8758,
+                "max": 27610.3171,
+                "p(90)": 27537.772559999998,
+                "p(95)": 27583.60497
+            }
+        },
+        "checks": {
+            "type": "rate",
+            "contains": "default",
+            "values": {
+                "rate": 0.0086,
+                "passes": 43,
+                "fails": 4957
+            }
+        },
+        "data_received": {
+            "type": "counter",
+            "contains": "data",
+            "values": {
+                "count": 4471655,
+                "rate": 73149.21966417253
+            }
+        },
+        "http_req_sending": {
+            "type": "trend",
+            "contains": "time",
+            "values": {
+                "max": 0.6134,
+                "p(90)": 0,
+                "p(95)": 0,
+                "avg": 0.004646519999999999,
+                "min": 0,
+                "med": 0
+            }
+        },
+        "data_sent": {
+            "type": "counter",
+            "contains": "data",
+            "values": {
+                "count": 863276,
+                "rate": 14121.833136681655
+            }
+        },
+        "iteration_duration": {
+            "contains": "time",
+            "values": {
+                "max": 61029.3375,
+                "p(90)": 26103.6376,
+                "p(95)": 28282.960645000003,
+                "avg": 19713.424960260018,
+                "min": 4867.5135,
+                "med": 19466.5142
+            },
+            "type": "trend"
+        }
+    },
+    "root_group": {
+        "checks": [],
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": [
+            {
+                "groups": [],
+                "checks": [
+                    {
+                        "path": "::Retweet Tweet::Status is 204",
+                        "id": "1320cc99f9fefaa2c5b826a1c614e0f9",
+                        "passes": 43,
+                        "fails": 4957,
+                        "name": "Status is 204"
+                    }
+                ],
+                "name": "Retweet Tweet",
+                "path": "::Retweet Tweet",
+                "id": "11b523fb97fb9a1b79783b8cc3f5c2b2"
+            }
+        ]
+    },
+    "options": {
+        "summaryTrendStats": [
+            "avg",
+            "min",
+            "med",
+            "max",
+            "p(90)",
+            "p(95)"
+        ],
+        "summaryTimeUnit": "",
+        "noColor": false
+    }
+}

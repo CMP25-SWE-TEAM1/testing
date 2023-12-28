@@ -2,39 +2,20 @@ const User = require("../../fixtures/data.json");
 const LoginPage = require("../pageobjects/loginPage");
 const HomePage = require("../pageobjects/homePage");
 const TweetPage = require("../pageobjects/tweetPage");
+const LoginFacade = require("../utilis/LoginFacade");
+const SearchFacad = require("../utilis/SearchFacad");
 const expect = require("chai").expect;
-
 describe("Search and Trends", () => {
   beforeEach(async () => {
-    const loginButton = await LoginPage.loginButton;
-    await loginButton.click();
-    await driver.pause(1000);
-    await (await LoginPage.userNameField).click();
-    await (await LoginPage.userNameField).clearValue();
-    await (await LoginPage.userNameField).addValue(User.validUsername);
-    await (await LoginPage.nextButton).click();
-    await (await LoginPage.userNameView).getText();
-    await (await LoginPage.userPasswordField).click();
-    await (await LoginPage.userPasswordField).clearValue();
-    await (await LoginPage.userPasswordField).addValue(User.validPassword);
-    await (await LoginPage.showPasswordButton).click();
-    await (await LoginPage.loginButton).click();
-    await driver.pause(2000);
+    await LoginFacade.performLogin(User.validUsername, User.validPassword);
   });
   afterEach(async () => {
     await driver.reloadSession();
   });
 
   it("search for user", async () => {
-    const searchButton = await HomePage.searchButton;
-    await searchButton.click();
-    let searchForm = await HomePage.getSearchForm(1);
-    await searchForm.click();
+    await SearchFacad.search("Youssef");
 
-    await (await HomePage.getSearchForm(2)).click();
-    await (await HomePage.getSearchForm(2)).addValue("Youssef");
-    await driver.execute("mobile: performEditorAction", { action: "search" });
-    await driver.pause(1000);
     const peopleTab = await HomePage.peopleTab;
     await peopleTab.click();
     await driver.pause(2000);
@@ -44,8 +25,65 @@ describe("Search and Trends", () => {
     expect(userName).to.be.equal("Youssef");
     await driver.pause(2000);
   });
+
+  it("search for tweet", async () => {
+    await SearchFacad.search("gg");
+
+    const peopleTab = await HomePage.topTab;
+    await peopleTab.click();
+
+    await driver.pause(2000);
+
+    const firstUserInSearch = await HomePage.firstTweetInSearch;
+    let tweetInformation = await firstUserInSearch.getAttribute("content-desc");
+    flag = tweetInformation.includes("gg");
+    expect(flag).to.be.true;
+
+    await driver.pause(2000);
+  });
+  it("search for hashtag", async () => {
+    await SearchFacad.search("#MAN");
+
+    const peopleTab = await HomePage.topTab;
+    await peopleTab.click();
+
+    await driver.pause(2000);
+
+    const tweetHashtags = await HomePage.firstTweetHashtagsInSearch;
+
+    let flag = false;
+    for (const element of tweetHashtags) {
+      let hashtag = await element.getAttribute("content-desc");
+      if (hashtag.includes("#MAN")) {
+        flag = true;
+        break;
+      }
+    }
+
+    expect(flag).to.be.true;
+
+    await driver.pause(2000);
+  });
+
+  it("click on hashtags", async () => {
+    await SearchFacad.search("#MAN");
+
+    const peopleTab = await HomePage.topTab;
+    await peopleTab.click();
+
+    await driver.pause(2000);
+
+    const tweetHashtags = await HomePage.firstTweetHashtagsInSearch;
+
+    for (const hashtag of tweetHashtags) {
+      let isClickableHashtag = await hashtag.isEnabled();
+      expect(isClickableHashtag).to.be.true;
+    }
+
+    await driver.pause(2000);
+  });
 });
 //npx wdio
 //./node_modules/.bin/wdio wdio.conf.js --spec ./test/specs/searchAndHashtags.e2e.js
 //need await to get the item and another await to apply the fuction
-//allure generate allure-results && allure open
+//allure generate --clean allure-results && allure open

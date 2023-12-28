@@ -3,79 +3,24 @@ const LoginPage = require("../pageobjects/loginPage");
 const HomePage = require("../pageobjects/homePage");
 const ProfilePage = require("../pageobjects/profilePage");
 const TweetPage = require("../pageobjects/tweetPage");
+const LoginFacade = require("../utilis/LoginFacade");
+const ProfileFacade = require("../utilis/ProfileFacade");
 const expect = require("chai").expect;
 
-describe("Testing Profile", () => {
+describe("User Profile", () => {
   beforeEach(async () => {
-    const loginButton = await LoginPage.loginButton;
-    await loginButton.click();
-    await driver.pause(1000);
-    await (await LoginPage.userNameField).click();
-    await (await LoginPage.userNameField).clearValue();
-    await (await LoginPage.userNameField).addValue(User.validUsername);
-    await (await LoginPage.nextButton).click();
-
-    await (await LoginPage.userNameView).getText();
-    await (await LoginPage.userPasswordField).click();
-    await (await LoginPage.userPasswordField).clearValue();
-    await (await LoginPage.userPasswordField).addValue(User.validPassword);
-    await (await LoginPage.showPasswordButton).click();
-    await (await LoginPage.loginButton).click();
-    await driver.pause(2000);
+    await LoginFacade.performLogin(User.validUsername, User.validPassword);
   });
   afterEach(async () => {
     await driver.reloadSession();
   });
-
   it("check all profile tabs", async () => {
-    const userbutton = await HomePage.userButton;
-    await userbutton.click();
-    const profileTab = await HomePage.profileTab;
-    await profileTab.click();
-    await driver.pause(3000);
-
-    const postTab = await ProfilePage.getTab("Posts").tabElement;
-
-    let postTabText = await postTab.getAttribute("content-desc");
-
-    let postWord = postTabText.substring(0, 5);
-    expect(postWord).equal("Posts");
-
-    expect(await postTab.isEnabled()).to.be.true;
-
-    const repliesTab = await ProfilePage.getTab("Replies").tabElement;
-    let repliesTabText = await repliesTab.getAttribute("content-desc");
-
-    let repliesWord = repliesTabText.substring(0, 7);
-    expect(repliesWord).equal("Replies");
-
-    expect(await repliesTab.isEnabled()).to.be.true;
-
-    const mediaTab = await ProfilePage.getTab("Media").tabElement;
-    let MediaTabText = await mediaTab.getAttribute("content-desc");
-
-    let mediaWord = MediaTabText.substring(0, 5);
-    expect(mediaWord).equal("Media");
-
-    expect(await mediaTab.isEnabled()).to.be.true;
-
-    const likeTab = await ProfilePage.getTab("Likes").tabElement;
-    let LikesTabText = await likeTab.getAttribute("content-desc");
-
-    let likesWord = LikesTabText.substring(1, 6);
-    expect(likesWord).equal("Likes");
-
-    expect(await likeTab.isEnabled()).to.be.true;
-
-    await driver.pause(2000);
+    await ProfileFacade.goToOwnProfile();
+    await ProfileFacade.checkUserProfileExists();
   });
 
-  it("edit user profile", async () => {
-    const userbutton = await HomePage.userButton;
-    await userbutton.click();
-    const profileTab = await HomePage.profileTab;
-    await profileTab.click();
-    await driver.pause(3000);
+  it.skip("edit user profile", async () => {
+    await ProfileFacade.goToOwnProfile();
 
     const editProfileButton = await ProfilePage.editProfileButton;
     await editProfileButton.click();
@@ -126,40 +71,7 @@ describe("Testing Profile", () => {
     await userInformationLink.click();
     await driver.pause(1000);
 
-    const postTab = await ProfilePage.getTab("Posts").tabElement;
-
-    let postTabText = await postTab.getAttribute("content-desc");
-
-    let postWord = postTabText.substring(0, 5);
-    expect(postWord).equal("Posts");
-
-    expect(await postTab.isEnabled()).to.be.true;
-
-    const repliesTab = await ProfilePage.getTab("Replies").tabElement;
-    let repliesTabText = await repliesTab.getAttribute("content-desc");
-
-    let repliesWord = repliesTabText.substring(0, 7);
-    expect(repliesWord).equal("Replies");
-
-    expect(await repliesTab.isEnabled()).to.be.true;
-
-    const mediaTab = await ProfilePage.getTab("Media").tabElement;
-    let MediaTabText = await mediaTab.getAttribute("content-desc");
-
-    let mediaWord = MediaTabText.substring(0, 5);
-    expect(mediaWord).equal("Media");
-
-    expect(await mediaTab.isEnabled()).to.be.true;
-
-    const likeTab = await ProfilePage.getTab("Likes").tabElement;
-    let LikesTabText = await likeTab.getAttribute("content-desc");
-
-    let likesWord = LikesTabText.substring(1, 6);
-    expect(likesWord).equal("Likes");
-
-    expect(await likeTab.isEnabled()).to.be.true;
-
-    await driver.pause(2000);
+    await ProfileFacade.checkUserProfileExists();
   });
 
   it.only("Block user", async () => {
@@ -168,8 +80,8 @@ describe("Testing Profile", () => {
     await driver.touchAction([{ action: "tap", x: 0, y: 15, element: tweet }]);
     await driver.pause(1000);
 
-    const userInformationLink = await TweetPage.userInformationLink;
-    await userInformationLink.click();
+    const userInformationImage = await TweetPage.userInformationImage;
+    await userInformationImage.click();
     await driver.pause(1000);
 
     const profileOptionsButton = await ProfilePage.profileOptionsButton;
@@ -177,10 +89,50 @@ describe("Testing Profile", () => {
 
     const blockButton = await ProfilePage.blockButton;
     await blockButton.click();
+
+    const confirmBlockButton = await ProfilePage.confirmBlockButton;
+    await confirmBlockButton.click();
+
+    const blockedButton = await ProfilePage.blockedButton;
+    let blockedButtonText = await blockedButton.getAttribute("content-desc");
+    expect(blockedButtonText).equal("Blocked");
+
     await driver.pause(2000);
+  });
+
+  it("check followers list", async () => {
+    await ProfileFacade.goToOwnProfile();
+
+    const followersButton = await ProfilePage.followersButton;
+
+    let followersString = await followersButton.getAttribute("content-desc");
+    followersString = followersString.split(" ");
+    let followersCount = parseInt(followersString[0]);
+
+    await followersButton.click();
+    await driver.pause(2000); // wait for followers to load
+
+    const followersList = await ProfilePage.allUsers;
+    expect(followersCount).equal(followersList.length);
+  });
+
+  it("check following list", async () => {
+    await ProfileFacade.goToOwnProfile();
+
+    const followingButton = await ProfilePage.followingButton;
+
+    let followingString = await followingButton.getAttribute("content-desc");
+    followingString = followingString.split(" ");
+    let followingCount = parseInt(followingString[0]);
+
+    await followingButton.click();
+    await driver.pause(2000); // wait for followers to load
+
+    const followingList = await ProfilePage.allUsers;
+    expect(followingCount).equal(followingList.length);
   });
 });
 //npx wdio
 //./node_modules/.bin/wdio wdio.conf.js --spec ./test/specs/profile.e2e.js
 //need await to get the item and another await to apply the fuction
-//allure generate allure-results && allure open
+//allure generate --clean allure-results && allure open

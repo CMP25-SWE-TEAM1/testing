@@ -3,14 +3,17 @@ const LoginPage = require("../pageobjects/loginPage");
 const HomePage = require("../pageobjects/homePage");
 const DMPage = require("../pageobjects/directMessagesPage");
 const expect = require("chai").expect;
-
+const LoginFacade = require("../utilis/LoginFacade");
 describe("Direct Messages", () => {
+  beforeEach(async () => {
+    await LoginFacade.performLogin(User.validUsername, User.validPassword);
+  });
   afterEach(async () => {
     await driver.reloadSession();
   });
 
   it("post a messages", async () => {
-    const DMButton = await DMPage.DMButton;
+    const DMButton = await HomePage.DMButton;
     await DMButton.click();
 
     const firstChat = await DMPage.firstChat;

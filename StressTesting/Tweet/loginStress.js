@@ -7,13 +7,13 @@ import TestOptions from "./options.js";
 const optionsInstance = new TestOptions();
 export const options = optionsInstance.getOptions();
 
-const userEmail = "Ibraheimtarek1972@gmail.com";
+const userEmail = "ibraheimtarek1972@gmail.com";
 const userPassword = "anything";
 
 export default function getToken() {
   const url = `http://backend.gigachat.cloudns.org/api/user/login`;
   const payload = JSON.stringify({
-    email: userEmail,
+    query: userEmail,
     password: userPassword,
   });
 
