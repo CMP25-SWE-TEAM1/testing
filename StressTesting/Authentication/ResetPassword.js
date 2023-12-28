@@ -1,42 +1,44 @@
 import http from 'k6/http';
+import { check, sleep, group } from "k6";
 import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
 // export const options={
 //     vus: 10,
 //     duration:'10s',
 // }
-// export const options = {
-//   scenarios: {
-//     shared_iter_scenario: {
-//       executor: "shared-iterations",
-//       vus: 10,
-//       iterations: 100,
-//       startTime: "0s",
-//     },
-//     per_vu_scenario: {
-//       executor: "per-vu-iterations",
-//       vus: 10,
-//       iterations: 10,
-//       startTime: "10s",
-//     },
-//   },
-// };
- const userEmail = "mahmoud.khattab13@gmail.com";
- const userPassword = "deaddead";
+export const options = {
+  scenarios: {
+    shared_iter_scenario: {
+      executor: "shared-iterations",
+      vus: 10,
+      iterations: 100,
+      startTime: "0s",
+    },
+    per_vu_scenario: {
+      executor: "per-vu-iterations",
+      vus: 1000,
+      iterations: 1,
+      startTime: "10s",
+    },
+  },
+};
+ const userEmail = "mahmoud_ossama";
+ const userPassword = "alhamdulillah";
 
 
  
-export default function getToken() {
-  const url = 'http://backend.gigachat.cloudns.org/api/user/resetpassword/';
+export default function() {
+  group("Check resetpassword", function(){
+    const url = 'http://backend.gigachat.cloudns.org/api/user/resetpassword/';
   
   const payload = JSON.stringify({
-    password: 'deaddead',
+    password: userPassword,
     passwordResetToken: 'abcdef'
   });
 
   const params = {
     headers: {
       "Content-Type": "application/json",
-      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjNhMzcwZGJkYzA2YzkyZjg2ZTRhYiIsImlhdCI6MTcwMTc3NDUwMSwiZXhwIjoxNzA5NTUwNTAxfQ.u8kUPL5dWE4mgWhN85rW0h8m6aEXl8S-VtN_dgKepw0"
+      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2I2MzA3ZjFlYTNiNmM4MGQ4N2JkNSIsImlhdCI6MTcwMzQxODA5MywiZXhwIjoxNzExMTk0MDkzfQ.4cXrOyu8ZHkKVsWzoT3ET13bMJ5cPUakLZY0zj4E740"
     },
   };  
 
@@ -50,13 +52,14 @@ export default function getToken() {
   console.log(res.status);
   console.log(res.body);
   sleep(1);
+  });
 
  // return token;
 }
-// export function handleSummary(data) {
-//   return {
-//     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-//     "GetProfileDetailsReport.json": JSON.stringify(data), //the default data object
-//   };
-// } 
+export function handleSummary(data) {
+  return {
+    stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
+    "ResetPasswordReport.json": JSON.stringify(data), //the default data object
+  };
+} 
   //sleep(1);

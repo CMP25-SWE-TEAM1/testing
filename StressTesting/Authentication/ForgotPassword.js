@@ -16,27 +16,26 @@ export const options = {
     },
     per_vu_scenario: {
       executor: "per-vu-iterations",
-      vus: 10,
-      iterations: 10,
+      vus: 3000,
+      iterations: 1,
       startTime: "10s",
     },
   },
 };
- const userEmail = "mahmoud.khattab13@gmail.com";
- const userPassword = "deaddead";
+ const userEmail = "mahmoud_ossama";
+ const userPassword = "alhamdulillah";
 
 export default function getToken() {
   const url = 'http://backend.gigachat.cloudns.org/api/user/forgotpassword';
   
   const payload = JSON.stringify({
-    email: userEmail,
-    username: '7oda'
+    query: userEmail,
   });
 
   const params = {
     headers: {
       "Content-Type": "application/json",
-      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjNhMzcwZGJkYzA2YzkyZjg2ZTRhYiIsImlhdCI6MTcwMTc3NDUwMSwiZXhwIjoxNzA5NTUwNTAxfQ.u8kUPL5dWE4mgWhN85rW0h8m6aEXl8S-VtN_dgKepw0"
+      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2I2MzA3ZjFlYTNiNmM4MGQ4N2JkNSIsImlhdCI6MTcwMzQxODA5MywiZXhwIjoxNzExMTk0MDkzfQ.4cXrOyu8ZHkKVsWzoT3ET13bMJ5cPUakLZY0zj4E740"
     },
   };  
 

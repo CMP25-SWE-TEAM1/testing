@@ -7,31 +7,33 @@ import { check, sleep, group } from "k6";
 // const optionsInstance = new TestOptions();
 // export const options = optionsInstance.getOptions();
 
-export const options = {
-    scenarios: {
-      shared_iter_scenario: {
-        executor: "shared-iterations",
-        vus: 10,
-        iterations: 100,
-        startTime: "0s",
-      },
-      per_vu_scenario: {
-        executor: "per-vu-iterations",
-        vus: 10,
-        iterations: 10,
-        startTime: "10s",
-      },
-    },
-  };
+// export const options = {
+//     scenarios: {
+//       shared_iter_scenario: {
+//         executor: "shared-iterations",
+//         vus: 10,
+//         iterations: 100,
+//         startTime: "0s",
+//       },
+//       per_vu_scenario: {
+//         executor: "per-vu-iterations",
+//         vus: 1000,
+//         iterations: 1,
+//         startTime: "10s",
+//       },
+//     },
+//   };
 
-const userEmail = "mahmoud.khattab13@gmail.com";
-const userPassword = "deaddead";
+const userEmail = "mahmoud_ossama";
+const userPassword = "alhamdulillah";
 
-export default function getToken() {
-  const url = 'http://backend.gigachat.cloudns.org/api/user/login';
+export default function () {
+  group("Check login credentials", function(){
+    const url = 'https://backend.gigachat.cloudns.org/api/user/login';
   const payload = JSON.stringify({
-    email: userEmail,
+    query: userEmail,
     password: userPassword,
+    push_token: null,
   });
 
   const params = {
@@ -43,20 +45,22 @@ export default function getToken() {
   const res = http.post(url, payload, params);
 
   check(res, {
-    "Status is 201": (r) => r.status === 201,
+    "Status is 200": (r) => r.status === 200,
     "Response includes token": (r) => JSON.parse(r.body).token !== undefined,
   });
   const token = JSON.parse(res.body).token;
+  console.log(res.status);
   console.log(token);
   console.log(res.body);
   sleep(1);
 
   return token;
+  });
 }
 
-export function handleSummary(data) {
-  return {
-    stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-    "LoginReport.json": JSON.stringify(data), //the default data object
-  };
-} 
+// export function handleSummary(data) {
+//   return {
+//     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
+//     "LoginReport.json": JSON.stringify(data), //the default data object
+//   };
+// } 

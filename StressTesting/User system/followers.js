@@ -1,7 +1,7 @@
-import http from 'k6/http';
-import { sleep } from 'k6';
-import { check } from 'k6';
+import encoding from "k6/encoding";
+import http from "k6/http";
 import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
+import { check, sleep, group } from "k6";
 // export const options={
 //     vus: 10,
 //     duration:'10s',
@@ -16,8 +16,8 @@ import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
 //     },
 //     per_vu_scenario: {
 //       executor: "per-vu-iterations",
-//       vus: 10,
-//       iterations: 10,
+//       vus: 10000,
+//       iterations: 1,
 //       startTime: "10s",
 //     },
 //   },
@@ -25,22 +25,25 @@ import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.2/index.js";
  const userEmail = "mahmoud.khattab13@gmail.com";
  const userPassword = "deaddead";
 
-export default function getToken() {
-  const url = 'http://backend.gigachat.cloudns.org/api/notification/all';
+export default function () {
+  group("Verify followers", function(){
+    const url = 'https://backend.gigachat.cloudns.org/api/user/profile/sara_bisheer/followers?page=1&count=20';
   
   const payload = JSON.stringify({
-    page: 1,
-    count: 2
+    type: 'user',
+    word: 'm',
+
   });
 
   const params = {
     headers: {
       "Content-Type": "application/json",
-      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjNhMzcwZGJkYzA2YzkyZjg2ZTRhYiIsImlhdCI6MTcwMTAyOTAxNiwiZXhwIjoxNzA4ODA1MDE2fQ.LoAtLJAoURxZ9YtQ01VNx5t-RLqgwKPTxSHekF-jpsk"
+      "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2I2MzA3ZjFlYTNiNmM4MGQ4N2JkNSIsImlhdCI6MTcwMzUwODA0OCwiZXhwIjoxNzExMjg0MDQ4fQ.FUUXcmBeCAjUFndt6S3FllSB3h7NFLjk0gYxq3Chwnc"
     },
+    user: 'mahmoud_ossama',
   };  
 
-  const res = http.get(url,payload,params);
+  const res = http.get(url,params);
 
   check(res, {
     "Status is 200": (r) => r.status === 200,
@@ -50,13 +53,14 @@ export default function getToken() {
   console.log(res.status);
   console.log(res.body);
   sleep(1);
+  });
 
  // return token;
 }
 // export function handleSummary(data) {
 //   return {
 //     stdout: textSummary(data, { indent: " ", enableColors: true }), // Show the text summary to stdout...
-//     "confirmEmailReport.json": JSON.stringify(data), //the default data object
+//     "FollowersReport.json": JSON.stringify(data), //the default data object
 //   };
 // } 
   //sleep(1);

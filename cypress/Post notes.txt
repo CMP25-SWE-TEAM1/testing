@@ -1,0 +1,2 @@
+Post with replies test case should have been reported as a failure. However, cypress seems to not see exceptions as a test case failure.
+
