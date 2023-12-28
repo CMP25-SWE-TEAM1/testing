@@ -1,5 +1,7 @@
+import "utilities.js"
+
 const signing_in = () => {
-    cy.visit('http://localhost:3001/');
+    cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -9,7 +11,7 @@ const signing_in = () => {
         cy.get('#password').should('exist').type('deaddead');
         cy.get('#login').should('exist').click();
         cy.wait(5000);
-        cy.url().should('eq','http://localhost:3001/home');
+        cy.url().should('eq','https://www.gigachat.cloudns.org/home');
 }
 
 describe('Verifying navigation bar links',function()
@@ -24,72 +26,72 @@ describe('Verifying navigation bar links',function()
     it('Verifying home navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(1) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/home');
+        cy.get(home_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/home');
     }
     )
 
     it('Verify explore navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(2) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/explore');
+        cy.get(explore_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/explore');
     }
     )
 
     it('Verify notifications navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(3) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/notifications');
+        cy.get(notifications_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/notifications');
     }
     )
 
     it('Verify messages navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(4) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/messages');
+        cy.get(messages_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/messages');
     }
     )
     
     it('Verify Lists navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(5) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/ismail_sh02/lists');
+        cy.get(lists_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/ismail_sh02/lists');
     }
     )
 
     it('Verify Bookmarks navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(6) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/i/bookmarks');
+        cy.get(bookmarks_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/i/bookmarks');
     }
     )
 
     it('Verify Communities navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(7) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/ismail_sh02/communities');
+        cy.get(communities_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/ismail_sh02/communities');
     }
     )
 
     it('Verify Profile navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(8) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/ismail_sh02');
+        cy.get(profile_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/ismail_sh02');
     }
     )
 
     it('Verify Settings navigation',function()
     {
         signing_in();
-        cy.get('#mahmoud_navigate_pre > div:nth-child(9) > div').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/settings/account');
+        cy.get(settings_sidebar).should('exist').click();
+        cy.url().should('eq','https://www.gigachat.cloudns.org/settings/account');
     }
     )
 
@@ -97,7 +99,7 @@ describe('Verifying navigation bar links',function()
     {
         signing_in();
         cy.get('#mahmoud_posts_nav').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/compose/tweet');
+        cy.url().should('eq','https://www.gigachat.cloudns.org/compose/tweet');
     }
     )
 }

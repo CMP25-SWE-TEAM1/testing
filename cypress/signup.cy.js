@@ -1,3 +1,5 @@
+import "utilities.js"
+
 describe('Checking singup credentials',function()
 {
     //test 1
