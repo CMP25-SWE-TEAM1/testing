@@ -1,9 +1,12 @@
+import "utilities.js"
+
 const my_name = 'Mahmoud Ossama';
 const my_username = '@mahmoud_ossama'
 
+
 const signing_in = () => {
  // cy.viewport(1200, 800);
-    cy.visit('http://localhost:3001/');
+    cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -13,9 +16,9 @@ const signing_in = () => {
         cy.get('#password').should('exist').type('alhamdulillah');
         cy.get('#login').should('exist').click();
         cy.wait(5000);
-        cy.url().should('eq','http://localhost:3001/home');
+        cy.url().should('eq','https://www.gigachat.cloudns.org/home');
         cy.get('#mahmoud_navigate_pre > div:nth-child(3)').should('exist').click();
-        cy.url().should('eq','http://localhost:3001/explore');
+        cy.url().should('eq','https://www.gigachat.cloudns.org/explore');
 }
 
 describe('Verifying explore page',function()
@@ -24,9 +27,9 @@ describe('Verifying explore page',function()
     {
         signing_in();
         cy.get('#simple-tab-0').click();
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]").should('exist').click();
+        cy.xpath(first_trend).should('exist').click();
         cy.wait(2000);
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[11]/div[1]/div[1]").should('exist');
+        cy.xpath(first_trend_post).should('exist');
     }
     )
 
@@ -34,9 +37,9 @@ describe('Verifying explore page',function()
     {
         signing_in();
         cy.get('#simple-tab-0').click();
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[4]").should('exist').click();
+        cy.xpath(third_trend).should('exist').click();
         cy.wait(2000);
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[11]/div[1]/div[1]").should('exist');
+        cy.xpath(third_trend_post).should('exist');
     }
     )
 
@@ -44,9 +47,9 @@ describe('Verifying explore page',function()
     {
         signing_in();
         cy.get('#simple-tab-0').click();
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[5]").should('exist').click();
+        cy.xpath(fourth_trend).should('exist').click();
         cy.wait(2000);
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[11]/div[1]/div[1]").should('exist');
+        cy.xpath(fourth_trend_post).should('exist');
     }
     )
 
@@ -54,9 +57,9 @@ describe('Verifying explore page',function()
     {
         signing_in();
         cy.get('#simple-tab-0').click();
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[6]").should('exist').click();
+        cy.xpath(fifth_trend).should('exist').click();
         cy.wait(2000);
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[11]/div[1]/div[1]").should('exist');
+        cy.xpath(fifth_trend_post).should('exist');
     }
     )
 
@@ -64,9 +67,9 @@ describe('Verifying explore page',function()
     {
         signing_in();
         cy.get('#simple-tab-0').click();
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[7]").should('exist').click();
+        cy.xpath(sixth_trend).should('exist').click();
         cy.wait(2000);
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[11]/div[1]/div[1]").should('exist');
+        cy.xpath(sixth_trend_post).should('exist');
     }
     )
 
@@ -74,9 +77,9 @@ describe('Verifying explore page',function()
     {
         signing_in();
         cy.get('#simple-tab-0').click();
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[9]").should('exist').click();
+        cy.xpath(eighth_trend).should('exist').click();
         cy.wait(2000);
-        cy.xpath("//body/div[@id='root']/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[11]/div[1]/div[1]").should('exist');
+        cy.xpath(eighth_trend_post).should('exist');
     }
     )
 }

@@ -1,10 +1,12 @@
+import "utilities.js"
+
 describe('Checking login credentials',function()
 {
     //test1
 
     it('Verify the ability to click sign up with google',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get('#signInButton > button').should('exist').click();
     }
     )
@@ -17,7 +19,7 @@ describe('Checking login credentials',function()
         cy.get('#identifierNext > div > button').click();
         cy.get('input[type="password"]').type('midobibo');
         cy.get('#passwordNext > div > button').click();
-        cy.url().should('eq','http://localhost:3001/home');
+        cy.url().should('eq','https://www.gigachat.cloudns.org/home');
     }
     )
     */
@@ -26,7 +28,7 @@ describe('Checking login credentials',function()
 
     it('Verify the ability to sign in',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -36,7 +38,7 @@ describe('Checking login credentials',function()
         cy.get('#password').should('exist').type('deaddead');
         cy.get('#login').should('exist').click();
         cy.wait(5000);
-        cy.url().should('eq','http://localhost:3001/home');
+        cy.url().should('eq','https://www.gigachat.cloudns.org/home');
     }
     )
 
@@ -44,7 +46,7 @@ describe('Checking login credentials',function()
 
     it('Verify that the password cannot be empty',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -60,7 +62,7 @@ describe('Checking login credentials',function()
 
     it('Verify that the password can be seen or not seen',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -80,7 +82,7 @@ describe('Checking login credentials',function()
 
     it('Verify that the username cannot be empty',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -93,7 +95,7 @@ describe('Checking login credentials',function()
 
     it('Verify that the username cannot be empty 2',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -108,7 +110,7 @@ describe('Checking login credentials',function()
 
     it('Verify that the email of the forgotten password is written',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -122,7 +124,7 @@ describe('Checking login credentials',function()
 
     it('Verify that the secondary email in the forgotten password is written',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -138,7 +140,7 @@ describe('Checking login credentials',function()
 
     it('Verify that the secondary email in the forgotten password is written and the code will be forwarded to it',function()
     {
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
@@ -155,7 +157,7 @@ describe('Checking login credentials',function()
     //test 10
 
     it('Verify wrong login credentials',function(){
-        cy.visit('http://localhost:3001/');
+        cy.visit('https://www.gigachat.cloudns.org/');
         cy.get("#mahmoud_login_box").should('not.exist');
         cy.get("#mahmoud_signin_button").should('exist').click();
         cy.wait(5000);
